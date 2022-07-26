@@ -15,7 +15,7 @@ from django.views.generic import ListView
 from django.views.generic.dates import MonthArchiveView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
-from ihatetobudget.utils.views import (
+from finance.utils.views import (
     InitialDataAsGETOptionsMixin,
     SortableListViewMixin,
     SuccessMessageOnDeleteViewMixin,

@@ -1,0 +1,16 @@
+{% extends 'finance/common/base.html' %}
+
+{% load static %}
+
+{% block body %}
+  <div class="jumbotron text-center">
+    <h1 class="display-4 mb-3">
+      <img src="{% static 'logo.png' %}" class="img-fluid" style="max-height: 125px;" alt="finance" loading="lazy">
+    </h1>
+    <p class="lead">A simple web app to understand and control your expenses</p>
+    <p class="lead">Designed to be self-hosted</p>
+    <hr class="my-4">
+    <p>finance is released under the GPLv3.</p>
+    <a class="btn btn-primary btn-lg" href="https://github.com/bminusl/finance" role="button">Learn more</a>
+  </div>
+{% endblock %}

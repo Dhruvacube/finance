@@ -6,6 +6,6 @@ def index(request):
         redirect("sheets:index")
         if request.user.is_authenticated
         else render(
-            request, "ihatetobudget/index.html", context={"title": "Home"}
+            request, "finance/index.html", context={"title": "Home"}
         )
     )

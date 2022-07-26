@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel='shortcut icon' type='image/x-icon' href="{% static 'favicon.ico' %}" />
 
-    <title>{% block title %}{{ title }}{% endblock %} &mdash; IHateToBudget</title>
+    <title>{% block title %}{{ title }}{% endblock %} &mdash; finance</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -19,7 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
   </head>
   <body>
-    {% include "ihatetobudget/common/navbar.html" %}
+    {% include "finance/common/navbar.html" %}
 
     <div class="container mt-4">
       {% bootstrap_messages %}
@@ -27,8 +27,8 @@
       {% block body %}{% endblock %}
 
       <footer class="mt-5 mb-4 d-flex justify-content-between text-muted">
-        <span>Powered By <a class="text-muted" href="https://github.com/bminusl/ihatetobudget">IHateToBudget</a></span>
-        <a class="ml-3 text-right text-muted" href="https://github.com/bminusl/ihatetobudget/releases/tag/v{{ version }}"><span>Version {{ version }}</span></a>
+        <span>Powered By <a class="text-muted" href="https://github.com/bminusl/finance">finance</a></span>
+        <a class="ml-3 text-right text-muted" href="https://github.com/bminusl/finance/releases/tag/v{{ version }}"><span>Version {{ version }}</span></a>
       </footer>
     </div>
 

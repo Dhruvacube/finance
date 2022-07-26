@@ -1,4 +1,4 @@
-{% extends 'ihatetobudget/common/base.html' %}
+{% extends 'finance/common/base.html' %}
 
 {% load bootstrap4 %}
 
@@ -8,16 +8,14 @@
 
   <div class="row justify-content-md-center">
     <div class="col-lg-6">
-      <form method="post" class="form">
+      <form method="post" class="form" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="alert alert-warning" role="alert">
-          Are you sure you want to delete "<span class="font-weight-bold">{{ object }}</span>"? This action cannot be undone.
-        </div>
+        {% bootstrap_form form %}
         <hr class="mt-5 mb-3">
         <div class="text-right">
           {% spaceless %}
             <button type="button" class="btn btn-light mr-2" onclick="javascript:history.back();"><i class="fa fa-times fa-fw"></i> Cancel</button>
-            <button type="submit" class="btn btn-danger"><i class="fa fa-trash fa-fw"></i> Delete</button>
+            <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o fa-fw"></i> Save</button>
           {% endspaceless %}
         </div>
       </form>

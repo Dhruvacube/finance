@@ -1,19 +1,19 @@
 <p align="center">
-  <a href="https://github.com/bminusl/ihatetobudget/">
-    <img src="https://raw.githubusercontent.com/bminusl/ihatetobudget/master/static/logo.png" alt="IHateToBudget logo" height="75">
+  <a href="https://github.com/bminusl/finance/">
+    <img src="https://raw.githubusercontent.com/bminusl/finance/master/static/logo.png" alt="finance logo" height="75">
   </a>
 </p>
 
 
-<h3 align="center">IHateToBudget</h3>
+<h3 align="center">finance</h3>
 
 <p align="center">
-  <img src="https://img.shields.io/github/pipenv/locked/python-version/bminusl/ihatetobudget" alt="GitHub Pipenv locked Python version">
-  <img src="https://img.shields.io/github/pipenv/locked/dependency-version/bminusl/ihatetobudget/django" alt="GitHub Pipenv locked dependency version">
-  <img src="https://img.shields.io/github/license/bminusl/ihatetobudget" alt="GitHub">
+  <img src="https://img.shields.io/github/pipenv/locked/python-version/bminusl/finance" alt="GitHub Pipenv locked Python version">
+  <img src="https://img.shields.io/github/pipenv/locked/dependency-version/bminusl/finance/django" alt="GitHub Pipenv locked dependency version">
+  <img src="https://img.shields.io/github/license/bminusl/finance" alt="GitHub">
   <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code style: black">
-  <img src="https://img.shields.io/github/v/tag/bminusl/ihatetobudget" alt="GitHub tag (latest by date)">
-  <img src="https://img.shields.io/github/commits-since/bminusl/ihatetobudget/v1.5.7" alt="GitHub commits since latest release (by date)">
+  <img src="https://img.shields.io/github/v/tag/bminusl/finance" alt="GitHub tag (latest by date)">
+  <img src="https://img.shields.io/github/commits-since/bminusl/finance/v1.5.7" alt="GitHub commits since latest release (by date)">
 </p>
 
 <p align="center">
@@ -47,7 +47,7 @@
 
 [![Mentioned in Awesome Selfhosted](https://awesome.re/mentioned-badge.svg)](https://github.com/awesome-selfhosted/awesome-selfhosted)
 
-It is important to control your budget and know where your money goes. I've tried lots of different apps and methods, but none have really convinced me. So I designed and developed IHateToBudget, a simple and efficient application that meets my needs.
+It is important to control your budget and know where your money goes. I've tried lots of different apps and methods, but none have really convinced me. So I designed and developed finance, a simple and efficient application that meets my needs.
 
 And it's also available for you.
 
@@ -90,8 +90,8 @@ Explore and filter all expenses.
 2. Clone the repository:
 
    ```bash
-   git clone https://github.com/bminusl/ihatetobudget.git
-   cd ihatetobudget
+   git clone https://github.com/bminusl/finance.git
+   cd finance
    ```
 
 3. Create a copy of:
@@ -116,7 +116,7 @@ Explore and filter all expenses.
 
    **Currency formatting**
 
-   In IHateToBudget, money is represented by positive decimals of the form "xxxxxxxx.yy". The user is free to change the formatting to use the currency of their choice, by setting the following environment variables:
+   In finance, money is represented by positive decimals of the form "xxxxxxxx.yy". The user is free to change the formatting to use the currency of their choice, by setting the following environment variables:
 
    * `CURRENCY_GROUP_SEPARATOR`: A single character which separates the whole number into groups of 3 digits.<sup>1</sup>
    * `CURRENCY_DECIMAL_SEPARATOR`: A single character that separates the whole part from the decimal part.<sup>1</sup>
@@ -141,19 +141,19 @@ Explore and filter all expenses.
 6. Start cron inside the container:
 
    ```bash
-   docker-compose exec ihatetobudget service cron start
+   docker-compose exec finance service cron start
    ```
 
 7. To be able to login, you will need a (super) user. To create it, execute the following commands:
 
    ```bash
-   docker-compose run --rm ihatetobudget pipenv run python manage.py migrate
-   docker-compose run --rm ihatetobudget pipenv run python manage.py createsuperuser
+   docker-compose run --rm finance pipenv run python manage.py migrate
+   docker-compose run --rm finance pipenv run python manage.py createsuperuser
    ```
 
    This will prompt you to set a username, an optional e-mail address and finally a password.
 
-8. You should now be able to visit your [IHateToBudget instance](http://127.0.0.1:80) at `http://127.0.0.1:80`. You can login with the username and password you just created.
+8. You should now be able to visit your [finance instance](http://127.0.0.1:80) at `http://127.0.0.1:80`. You can login with the username and password you just created.
 
 ## Updating
 
@@ -165,7 +165,7 @@ Explore and filter all expenses.
 
 2. Run `docker-compose down -v`. This will stop all containers.
 
-   Note: Volumes are also removed (`-v`), see [why](https://github.com/bminusl/ihatetobudget/commit/d893f01e223909df80f80d9187c355091b18c6e8).
+   Note: Volumes are also removed (`-v`), see [why](https://github.com/bminusl/finance/commit/d893f01e223909df80f80d9187c355091b18c6e8).
 
 3. **Create a backup of the database**—just in case—, e.g. run `cp db.sqlite3 db.sqlite3.bak`.
 
@@ -180,7 +180,7 @@ Explore and filter all expenses.
 6. Migrate the database:
 
    ```bash
-   docker-compose run --rm ihatetobudget pipenv run python manage.py migrate
+   docker-compose run --rm finance pipenv run python manage.py migrate
    ```
 
    This action will synchronize the database state with the current set of models and migrations.
@@ -190,7 +190,7 @@ Explore and filter all expenses.
 8. Start cron inside the container:
 
    ```bash
-   docker-compose exec ihatetobudget service cron start
+   docker-compose exec finance service cron start
    ```
 
 
@@ -216,7 +216,7 @@ See the [Developer documentation](#developer-documentation) section below for mo
 1. Install [Pipenv](https://pypi.org/project/pipenv/), if you haven't already.
 
    Pipenv is used to manage dependencies and the virtual environment.
-   Note: IHateToBudget currently targets **Python 3.8**, so **make sure it is installed too**.
+   Note: finance currently targets **Python 3.8**, so **make sure it is installed too**.
 
 2. Set up the virtual environment by executing the following command:
 
@@ -241,7 +241,7 @@ This action spawns a shell within the virtualenv.
 
 **You should now be able to work.**
 
-Since IHateToBudget is primarily a Django project, you should read [Django's documentation](https://docs.djangoproject.com/en/3.1/) if you are not familiar with it already.
+Since finance is primarily a Django project, you should read [Django's documentation](https://docs.djangoproject.com/en/3.1/) if you are not familiar with it already.
 
 ### Code quality
 

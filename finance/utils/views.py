@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.utils.safestring import mark_safe
 
-from ..templatetags.ihatetobudget_extras import override_query_dict
+from ..templatetags.finance_extras import override_query_dict
 
 
 # XXX: What a monstrous name!

@@ -1,6 +1,6 @@
 {% extends 'sheets/common/base.html' %}
 
-{% load ihatetobudget_extras %}
+{% load finance_extras %}
 
 {% block content %}
   {% include 'sheets/macros/page_header_beginning.html' with title=title %}
@@ -63,7 +63,7 @@
   <script>
 function currency(string_amount) {
   // XXX: Sadly, this is not a trivial as in Python
-  // See `/ihatetobudget/templatetags/ihatetobudget_extras.py`
+  // See `/finance/templatetags/finance_extras.py`
   string_amount = string_amount.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
   string_amount = string_amount.replace(/./g, function (match) {
     return {

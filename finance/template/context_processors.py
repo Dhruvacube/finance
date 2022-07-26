@@ -1,4 +1,4 @@
-from ihatetobudget import __version__
+from finance import __version__
 
 
 def version(request):

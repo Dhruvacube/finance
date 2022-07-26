@@ -2,7 +2,7 @@ import datetime
 
 from django.test import TestCase
 
-from ihatetobudget.tests import not_implemented
+from finance.tests import not_implemented
 
 from ..models import Expense
 from ..views import ExpenseDeleteView
