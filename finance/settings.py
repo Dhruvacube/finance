@@ -1,6 +1,9 @@
-import os, configparser, secrets
+import configparser
+import os
+import secrets
 from pathlib import Path
 from typing import Any
+
 
 class _MissingSentinel:
     __slots__ = ()
@@ -77,11 +80,6 @@ envConfig: Any = _envConfig()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get(
-    "DJANGO_SECRET_KEY", "jmcfps*07p7^w^*n$_ice%y7l42uuuey8%4yjb04s@h8(h=2c&"
-)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 SECRET_KEY = secrets.token_urlsafe(25)
@@ -195,11 +193,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Kolkata"
 
-USE_I18N = True
+USE_I18N = False
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
@@ -218,10 +216,10 @@ STATIC_ROOT = "/static/"
 
 # Currency formatting
 
-CURRENCY_GROUP_SEPARATOR = os.environ.get("CURRENCY_GROUP_SEPARATOR", " ")
-CURRENCY_DECIMAL_SEPARATOR = os.environ.get("CURRENCY_DECIMAL_SEPARATOR", ",")
-CURRENCY_PREFIX = os.environ.get("CURRENCY_PREFIX", "")
-CURRENCY_SUFFIX = os.environ.get("CURRENCY_SUFFIX", " €")
+CURRENCY_GROUP_SEPARATOR = getattr(envConfig, "CURRENCY_GROUP_SEPARATOR", " ")
+CURRENCY_DECIMAL_SEPARATOR = getattr(envConfig, "CURRENCY_DECIMAL_SEPARATOR", ",")
+CURRENCY_PREFIX = getattr(envConfig, "CURRENCY_PREFIX", "")
+CURRENCY_SUFFIX = getattr(envConfig, "CURRENCY_SUFFIX", "")
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
