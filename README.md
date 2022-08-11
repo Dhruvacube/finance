@@ -5,7 +5,7 @@
 </p>
 
 
-<h3 align="center">finance</h3>
+<h3 align="center">Finance</h3>
 
 <p align="center">
   <img src="https://img.shields.io/github/pipenv/locked/python-version/bminusl/finance" alt="GitHub Pipenv locked Python version">
