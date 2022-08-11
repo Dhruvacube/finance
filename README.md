@@ -36,8 +36,6 @@
   * [The development environment](#the-development-environment)
     * [Set up](#set-up)
     * [Usage](#usage)
-  * [Code quality](#code-quality)
-  * [Testing](#testing)
 
 
 
@@ -58,25 +56,18 @@ A basic authorization system exists but this application is not intended to be h
 
 Define categories, and their color.
 
-![Categories](./screenshots/categories.png)
 
 #### 2. Sheet
 
 Add dated and categorized expenses. They are automatically grouped by month (i.e. sheet).
 
-![Sheet](./screenshots/sheet.png)
-
 #### 3. Overview
 
 Analyze the overall statistics.
 
-![Overview](./screenshots/overview.png)
-
 #### 4. History
 
 Explore and filter all expenses.
-
-![History](./screenshots/history.png)
 
 ## Installation & Configuration
 
