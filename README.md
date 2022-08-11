@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://github.com/bminusl/finance/">
-    <img src="https://raw.githubusercontent.com/bminusl/finance/master/static/logo.png" alt="finance logo" height="75">
+  <a href="https://github.com/student-finance/finance/">
+    <img src="https://raw.githubusercontent.com/student-finance/finance/master/static/logo.png" alt="finance logo" height="75">
   </a>
 </p>
 
