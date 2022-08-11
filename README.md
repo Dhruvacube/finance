@@ -159,29 +159,3 @@ This action spawns a shell within the virtualenv.
 
 Since finance is primarily a Django project, you should read [Django's documentation](https://docs.djangoproject.com/en/3.1/) if you are not familiar with it already.
 
-### Code quality
-
-[`pre-commit`](https://pypi.org/project/pre-commit/) hooks are used to keep the code clean, namely:
-* [`black`](https://pypi.org/project/black/)
-* [`flake8`](https://pypi.org/project/flake8/)
-* [`isort`](https://pypi.org/project/isort/)
-
-Execute the following command to run pre-commit against all files:
-
-```bash
-pre-commit run --all-files
-```
-
-### Testing
-
-* To run tests, execute the following command:
-
-  ```bash
-  python manage.py test
-  ```
-
-* Alternatively, [`coverage`](https://pypi.org/project/coverage/) can be used to measure code coverage:
-
-  ```bash
-  coverage run --source='.' manage.py test
-  ```
