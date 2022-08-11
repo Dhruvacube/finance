@@ -97,6 +97,7 @@ INSTALLED_APPS = [
     "sheets.apps.SheetsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
+    "django_browser_reload",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -109,6 +110,7 @@ MIDDLEWARE = [
     "django.middleware.cache.UpdateCacheMiddleware",
     "django.middleware.gzip.GZipMiddleware",
     # "htmlmin.middleware.HtmlMinifyMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.http.ConditionalGetMiddleware",
     "django.middleware.locale.LocaleMiddleware",
@@ -259,3 +261,31 @@ else:
 
 MEDIA_ROOT = BASE_DIR/ "media"
 MEDIA_URL = "/media/"
+
+THEME_DICT = {
+    'yeti': '008CBA',
+    'cerulean': '2FA4E7',
+    'darkly': '375A7F',
+    'litera': 'FFF',
+    'materia': '299AF3',
+    'pulse': '593196',
+    'simplex': 'FFFFFF',
+    'solar': '073642',
+    'united': 'E95420',
+    'zephyr': '3459E6',
+    'cosmo': '2780E3',
+    'flatly': '2C3E50',
+    'lumen': 'F6F6F6',
+    'minty': '78C2AD',
+    'quartz': 'E83283',
+    'sketchy': 'FFFFFF',
+    'spacelab': 'EEEEEE',
+    'vapor': '6F42C1',
+    'cyborg':'060606',
+    'journal': 'FFFFFF',
+    'lux': 'FFFFFF',
+    'morph': '378DFC',
+    'sandstone': '325D88',
+    'slate': '3A3F44',
+    'superhero': '20374C'
+}
