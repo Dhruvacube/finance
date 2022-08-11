@@ -8,12 +8,11 @@
 <h3 align="center">finance</h3>
 
 <p align="center">
-  <img src="https://img.shields.io/github/pipenv/locked/python-version/bminusl/finance" alt="GitHub Pipenv locked Python version">
-  <img src="https://img.shields.io/github/pipenv/locked/dependency-version/bminusl/finance/django" alt="GitHub Pipenv locked dependency version">
-  <img src="https://img.shields.io/github/license/bminusl/finance" alt="GitHub">
-  <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code style: black">
-  <img src="https://img.shields.io/github/v/tag/bminusl/finance" alt="GitHub tag (latest by date)">
-  <img src="https://img.shields.io/github/commits-since/bminusl/finance/v1.5.7" alt="GitHub commits since latest release (by date)">
+  <img src="https://img.shields.io/github/pipenv/locked/python-version/student-finance/finance" alt="GitHub Pipenv locked Python version">
+  <img src="https://img.shields.io/github/pipenv/locked/dependency-version/student-finance/finance/django" alt="GitHub Pipenv locked dependency version">
+  <img src="https://img.shields.io/github/license/student-finance/finance" alt="GitHub">
+  <img src="https://img.shields.io/github/v/tag/student-finance/finance" alt="GitHub tag (latest by date)">
+  <img src="https://img.shields.io/github/commits-since/student-finance/finance/v1.5.7" alt="GitHub commits since latest release (by date)">
 </p>
 
 <p align="center">
