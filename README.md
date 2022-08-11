@@ -52,7 +52,7 @@ And it's also available for you.
 
 ## Features
 
-A basic authorization system exists but this application is not intended to be hosted on a public network (yet?). It is designed to be self-hosted locally (e.g. on a Raspberry Pi) and used by a few users within the same household.
+A basic authorization system exists but this application is not intended to be hosted on a public network (yet?). It is designed to be self-hosted locally (e.g. on a Raspberry Pi) and used by a few users within the same household. Also you can use [Cloudflare Zero Trust](https://www.cloudflare.com/products/zero-trust/) if you want it to be hosted on the public internet.
 
 #### 1. Categories
 
