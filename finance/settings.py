@@ -101,6 +101,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.humanize"
 ]
 
 MIDDLEWARE = [
@@ -218,7 +219,7 @@ STATIC_ROOT = "/static/"
 
 CURRENCY_GROUP_SEPARATOR = getattr(envConfig, "CURRENCY_GROUP_SEPARATOR", " ")
 CURRENCY_DECIMAL_SEPARATOR = getattr(envConfig, "CURRENCY_DECIMAL_SEPARATOR", ",")
-CURRENCY_PREFIX = getattr(envConfig, "CURRENCY_PREFIX", "")
+CURRENCY_PREFIX = getattr(envConfig, "CURRENCY_PREFIX", "₹")
 CURRENCY_SUFFIX = getattr(envConfig, "CURRENCY_SUFFIX", "")
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"

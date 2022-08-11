@@ -1,5 +1,5 @@
 {% extends 'sheets/common/base.html' %}
-
+{% load humanize %}
 {% load finance_extras %}
 
 {% block content %}
@@ -18,7 +18,7 @@
                 <i class="fa fa-question-circle-o" data-toggle="tooltip" title="Only completed months are included"></i>
               </h6>
 
-              <span class="h4 fx-fadein">{{ monthly_average_spend|currency }}</span>
+              <span class="h4 fx-fadein">{{ monthly_average_spend|intcomma|currency }}</span>
             </div>
             <span class="fa-stack fa-lg ml-3" style="font-size: 2rem;">
               <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
@@ -34,7 +34,7 @@
           <div class="media">
             <div class="media-body">
               <h6 class="mt-0 text-uppercase">Median spend</h6>
-              <span class="h4 fx-fadein">{{ median_spend|currency }}</span>
+              <span class="h4 fx-fadein">{{ median_spend|intcomma|currency }}</span>
             </div>
             <span class="fa-stack fa-lg ml-3" style="font-size: 2rem;">
               <i class="fa fa-circle fa-stack-2x fa-inverse"></i>

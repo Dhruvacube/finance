@@ -1,4 +1,5 @@
 {% extends 'sheets/common/base.html' %}
+{% load humanize %}
 
 {% load mathfilters %}
 {% load finance_extras %}
@@ -28,7 +29,7 @@
       <span class="text-muted"><i class="fa fa-hand-o-left" data-toggle="tooltip" title="No previous month"></i></span>
     {% endif %}
 
-    <p class="h3 text-center fx-fadein mb-0">{{ total_amount|currency }}</p>
+    <p class="h3 text-center fx-fadein mb-0">{{ total_amount|intcomma|currency }}</p>
 
     {% if next_month %}
       {% url 'sheets:sheet' next_month.year next_month.month as url %}
@@ -62,7 +63,7 @@
               </span>
             {% endif %}
 
-            <span class="ml-3">{{ category.list|attrsum:'amount'|currency }}</span>
+            <span class="ml-3">{{ category.list|attrsum:'amount'|intcomma|currency }}</span>
           </div>
           <ul class="list-group list-group-flush">
             {% for expense in category.list|dictsort:'date' %}
@@ -76,7 +77,7 @@
 
                 {% include 'sheets/macros/expense_menu.html' with expense=expense %}
 
-                <span class="text-muted">{{ expense.amount|currency }}</span>
+                <span class="text-muted">{{ expense.amount|intcomma|currency }}</span>
               </li>
             {% endfor %}
           </ul>

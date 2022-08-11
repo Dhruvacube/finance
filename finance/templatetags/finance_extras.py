@@ -24,13 +24,7 @@ def attrsum(container, attr_name):
 def currency(amount):
     return (
         settings.CURRENCY_PREFIX
-        + f"{amount:,.2f}".translate(
-            str.maketrans(
-                ",.",
-                settings.CURRENCY_GROUP_SEPARATOR
-                + settings.CURRENCY_DECIMAL_SEPARATOR,
-            )
-        )
+        + str(amount)
         + settings.CURRENCY_SUFFIX
     )
 
