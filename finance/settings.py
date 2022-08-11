@@ -93,7 +93,7 @@ INSTALLED_APPS = [
     "django_crontab",
     "mathfilters",
     "colorfield",
-    "bootstrap4",
+    "bootstrap5",
     "sheets.apps.SheetsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -107,7 +107,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.middleware.cache.UpdateCacheMiddleware",
     "django.middleware.gzip.GZipMiddleware",
-    "htmlmin.middleware.HtmlMinifyMiddleware",
+    # "htmlmin.middleware.HtmlMinifyMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.http.ConditionalGetMiddleware",
     "django.middleware.locale.LocaleMiddleware",
@@ -223,9 +223,6 @@ CURRENCY_SUFFIX = getattr(envConfig, "CURRENCY_SUFFIX", "")
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR/ "media"
-
 # Cron
 
 CRONJOBS = [
@@ -234,7 +231,7 @@ CRONJOBS = [
     ("5 0 1 * *", "sheets.cron.recurring_expenses")
 ]
 
-DEBUG = bool(getattr(envConfig, 'DEBUG', 0))
+DEBUG = bool(int(getattr(envConfig, 'DEBUG', 0))) 
 
 if not DEBUG:
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
@@ -256,10 +253,8 @@ if bool(getattr(envConfig, 'PRODUCTION_SERVER', 0)):
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_REFERRER_POLICY = "same-origin"
+else:
+    CACHE_MIDDLEWARE_SECONDS = 0
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-AWS_S3_CUSTOM_DOMAIN=envConfig.API_END_POINT
-AWS_STORAGE_BUCKET_NAME=envConfig.AWS_STORAGE_BUCKET_NAME
-AWS_S3_ACCESS_KEY_ID = envConfig.AWS_S3_ACCESS_KEY_ID
-AWS_S3_SECRET_ACCESS_KEY = envConfig.AWS_S3_SECRET_ACCESS_KEY
+MEDIA_ROOT = BASE_DIR/ "media"
+MEDIA_URL = "/media/"

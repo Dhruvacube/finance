@@ -5,7 +5,27 @@ from colorfield.fields import ColorField
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
+
+
+class Banks(models.Model):
+    name = models.CharField(max_length=255)
+    amount_deposited = models.DecimalField(decimal_places=2, max_digits=10, validators=[MinValueValidator(Decimal("0.01"))])
+    amount_threshold = models.DecimalField(decimal_places=2, max_digits=10, validators=[MinValueValidator(Decimal("0.01"))])
+    color = ColorField(default="#08cf3d")
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def display_color(self):
+        account_percentage = abs(self.amount_deposited / self.amount_threshold)
+        if account_percentage < 0.75 and account_percentage > 0.5:
+            return "#08cf3d"
+        if account_percentage < 0.5 and account_percentage > 0.25:
+            return "#ffc000"
+        if account_percentage < 0.25:
+            return "#ff0000"
 
 
 class Category(models.Model):
@@ -52,3 +72,4 @@ class Expense(models.Model):
             "sheets:sheet",
             kwargs={"year": self.date.year, "month": self.date.month},
         )
+

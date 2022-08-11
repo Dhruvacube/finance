@@ -22,10 +22,9 @@ from finance.utils.views import (
 )
 
 from .forms import CategoryForm, ExpenseForm
-from .models import Category, Expense
+from .models import Category, Expense, Banks
 
 
-@login_required
 def index(request):
     # XXX: this whole section can probably be optimized/rewritten.
     # <>
@@ -82,11 +81,13 @@ def index(request):
             currency_decimal_separator=settings.CURRENCY_DECIMAL_SEPARATOR,
             currency_prefix=settings.CURRENCY_PREFIX,
             currency_suffix=settings.CURRENCY_SUFFIX,
+            #bank
+            banks=Banks.objects.all()
         ),
     )
 
 
-class SheetView(LoginRequiredMixin, MonthArchiveView):
+class SheetView(MonthArchiveView):
     template_name = "sheets/sheet.html"
     queryset = Expense.objects.all()
     date_field = "date"
@@ -110,7 +111,7 @@ class ExpenseCreateView(
     SuccessMessageMixin,
     CreateView,
 ):
-    template_name = "ihatetobudget/generic/new-edit-form.html"
+    template_name = "finance/generic/new-edit-form.html"
     form_class = ExpenseForm
     extra_context = {"title": "New Expense"}
 
@@ -130,7 +131,7 @@ class ExpenseCreateView(
 
 
 class ExpenseUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    template_name = "ihatetobudget/generic/new-edit-form.html"
+    template_name = "finance/generic/new-edit-form.html"
     model = Expense
     form_class = ExpenseForm
     extra_context = {"title": "Edit Expense"}
@@ -165,7 +166,7 @@ class ExpenseDeleteView(
         return super().get_success_url()
 
 
-class ExpenseListView(LoginRequiredMixin, SortableListViewMixin, ListView):
+class ExpenseListView(SortableListViewMixin, ListView):
     template_name = "sheets/history.html"
     paginate_by = 50
     model = Expense
@@ -187,7 +188,7 @@ class ExpenseListView(LoginRequiredMixin, SortableListViewMixin, ListView):
         return queryset
 
 
-class CategoryListView(LoginRequiredMixin, ListView):
+class CategoryListView(ListView):
     template_name = "sheets/categories.html"
     model = Category
     extra_context = {"title": "Categories"}
@@ -198,7 +199,7 @@ class CategoryCreateView(
     SuccessMessageMixin,
     CreateView,
 ):
-    template_name = "ihatetobudget/generic/new-edit-form.html"
+    template_name = "finance/generic/new-edit-form.html"
     form_class = CategoryForm
     extra_context = {"title": "New Category"}
 
@@ -207,7 +208,7 @@ class CategoryCreateView(
 
 
 class CategoryUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    template_name = "ihatetobudget/generic/new-edit-form.html"
+    template_name = "finance/generic/new-edit-form.html"
     model = Category
     form_class = CategoryForm
     extra_context = {"title": "Edit Category"}
@@ -219,7 +220,7 @@ class CategoryUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 class CategoryDeleteView(
     LoginRequiredMixin, SuccessMessageOnDeleteViewMixin, DeleteView
 ):
-    template_name = "ihatetobudget/generic/delete-form.html"
+    template_name = "finance/generic/delete-form.html"
     model = Category
     extra_context = {"title": "Delete Category"}
     success_url = reverse_lazy("sheets:categories")

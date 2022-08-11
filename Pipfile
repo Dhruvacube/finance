@@ -17,8 +17,9 @@ django-crontab = "*"
 python-dateutil = "*"
 uvicorn = "*"
 whitenoise = "*"
-django-storages = "*"
-boto3 = "*"
+pillow = "*"
+setuptools = "*"
+django-bootstrap-v5 = "*"
 
 [requires]
 python_version = "3.9"
