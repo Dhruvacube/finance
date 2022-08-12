@@ -1,11 +1,11 @@
 import datetime
 import re
-from typing import Any
 
 from django import template
 from django.conf import settings
 from django.http import QueryDict
 from django.template.defaultfilters import stringfilter
+from django.urls import reverse
 from django.utils.safestring import mark_safe
 
 register = template.Library()
@@ -76,7 +76,7 @@ def highlight_text(text, term):
 
 @register.simple_tag
 def theme_range():
-    a = ''
+    a = ""
     for i in settings.THEME_DICT:
-        a+=f'<a class="dropdown-item" href="#"><i class="bi bi-circle-fill" style="color: #{settings.THEME_DICT[i]}"></i> {i.upper()}</a>'
+        a+=f'<a class="dropdown-item" href="{reverse("changetheme")}?theme={i}"><i class="bi bi-circle-fill" style="color: #{settings.THEME_DICT[i]}"></i> {i.capitalize()}</a>'
     return mark_safe(a)

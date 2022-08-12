@@ -1,5 +1,11 @@
+from asgiref.sync import sync_to_async
+from django.conf import settings
 from django.contrib import messages
+from django.shortcuts import redirect
+from django.urls import reverse
 from django.utils.safestring import mark_safe
+from django.views.decorators.cache import cache_page
+from django.views.decorators.http import require_GET
 
 from ..templatetags.finance_extras import override_query_dict
 
@@ -69,3 +75,14 @@ class SortableListViewMixin:
             """
             )
         return context
+
+colors_list = [settings.THEME_DICT[i] for i in settings.THEME_DICT]
+
+@sync_to_async
+@cache_page(60 * 15)
+@require_GET
+def changetheme(request):
+    l = (request.META.get("HTTP_REFERER") if request.META.get("HTTP_REFERER") else reverse("sheets:index"))
+    request.session['theme'] = request.GET.get("theme") if request.GET.get("theme") in settings.THEME_DICT else None
+    request.session['themecolor'] = request.GET.get("themecolor") if request.GET.get("themecolor") in colors_list else None
+    return redirect(l)

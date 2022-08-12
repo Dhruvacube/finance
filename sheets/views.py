@@ -3,6 +3,7 @@ import datetime
 import statistics
 from collections import defaultdict
 
+from asgiref.sync import sync_to_async
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -14,17 +15,15 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.dates import MonthArchiveView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-
-from finance.utils.views import (
-    InitialDataAsGETOptionsMixin,
-    SortableListViewMixin,
-    SuccessMessageOnDeleteViewMixin,
-)
+from finance.utils.views import (InitialDataAsGETOptionsMixin,
+                                 SortableListViewMixin,
+                                 SuccessMessageOnDeleteViewMixin)
 
 from .forms import CategoryForm, ExpenseForm
-from .models import Category, Expense, Banks
+from .models import Banks, Category, Expense
 
 
+@sync_to_async
 def index(request):
     # XXX: this whole section can probably be optimized/rewritten.
     # <>
