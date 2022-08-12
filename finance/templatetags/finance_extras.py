@@ -76,7 +76,7 @@ def highlight_text(text, term):
 
 @register.simple_tag
 def theme_range():
-    a = ""
+    a = f'<a class="dropdown-item" href="{reverse("changetheme")}?theme=default">Default</a><div class="dropdown-divider"></div>'
     for i in settings.THEME_DICT:
-        a+=f'<a class="dropdown-item" href="{reverse("changetheme")}?theme={i}"><i class="bi bi-circle-fill" style="color: #{settings.THEME_DICT[i]}"></i> {i.capitalize()}</a>'
+        a+=f'<a class="dropdown-item" href="{reverse("changetheme")}?theme={i}"><i class="bi bi-circle-fill" style="color: #{settings.THEME_DICT[i]}"></i> {i.title()}</a>'
     return mark_safe(a)

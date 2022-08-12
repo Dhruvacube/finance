@@ -5,7 +5,6 @@ from collections import defaultdict
 
 from asgiref.sync import sync_to_async
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Avg, Q, Sum
@@ -19,8 +18,8 @@ from finance.utils.views import (InitialDataAsGETOptionsMixin,
                                  SortableListViewMixin,
                                  SuccessMessageOnDeleteViewMixin)
 
-from .forms import CategoryForm, ExpenseForm
-from .models import Banks, Category, Expense
+from .forms import CategoryForm, ExpenseForm, BanksForm
+from .models import Banks, Category, Expense, Banks
 
 
 @sync_to_async
@@ -226,3 +225,65 @@ class CategoryDeleteView(
 
     # SuccessMessageMixin
     success_message = "Category deleted!"
+
+
+
+class BanksCreateView(
+    LoginRequiredMixin,
+    InitialDataAsGETOptionsMixin,
+    SuccessMessageMixin,
+    CreateView,
+):
+    template_name = "finance/generic/new-edit-form.html"
+    form_class = BanksForm
+    extra_context = {"title": "New Bank"}
+
+    # InitialDataAsGETOptionsMixin
+    # fields_with_initial_data_as_get_option = {
+    #     "category": lambda option_value: Category.objects.get(
+    #         name=option_value
+    #     ),
+    #     "date": None,
+    #     "description": None,
+    #     "amount": None,
+    #     "repeat_next_month": lambda option_value: option_value == "True",
+    # }
+
+    # SuccessMessageMixin
+    success_message = "Bank Added!"
+
+
+class BanksUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    template_name = "finance/generic/new-edit-form.html"
+    model = Banks
+    form_class = BanksForm
+    extra_context = {"title": "Edit Expense"}
+
+    # SuccessMessageMixin
+    success_message = "Expense modified!"
+
+
+class BanksDeleteView(
+    LoginRequiredMixin, SuccessMessageOnDeleteViewMixin, DeleteView
+):
+    #  XXX: a `template_name` must be defined if we want to delete via GET.
+    #  Currently, we delete via POST (no need to render a template, since we
+    #  redirect).
+
+    model = Banks
+    success_url = reverse_lazy("sheets:index")
+
+    # SuccessMessageMixin
+    success_message = "Bank deleted!"
+
+    def get_success_url(self):
+        object = self.object
+        # XXX: this can probably be optimized
+        if similar_object := (
+            self.model.objects.exclude(pk=object.pk)
+            .filter(date__year=object.date.year, date__month=object.date.month)
+            .first()
+        ):
+            #  There's a least one other object with the same year and month
+            return similar_object.get_absolute_url()
+        return super().get_success_url()

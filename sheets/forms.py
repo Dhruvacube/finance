@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from .models import Category, Expense
+from .models import Category, Expense, Banks
 
 
 class ExpenseForm(ModelForm):
@@ -16,4 +16,12 @@ class CategoryForm(ModelForm):
 
     class Meta:
         model = Category
+        fields = "__all__"
+
+
+class BanksForm(ModelForm):
+    required_css_class = "form-group-required"
+
+    class Meta:
+        model = Banks
         fields = "__all__"

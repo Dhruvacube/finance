@@ -27,6 +27,9 @@ class Banks(models.Model):
         if account_percentage < 0.25:
             return "#ff0000"
 
+    class Meta:
+        verbose_name_plural = "Banks"
+
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
@@ -39,6 +42,9 @@ class Category(models.Model):
         return reverse(
             "sheets:categories",
         )
+    
+    class Meta:
+        verbose_name_plural = "Categories"
 
 
 class Expense(models.Model):
@@ -63,6 +69,7 @@ class Expense(models.Model):
         ),
     )
     image = models.ImageField(upload_to="expenses", blank=True, null=True)
+    bank = models.ForeignKey(Banks, null=True, blank=True, related_name="expenses", on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.description

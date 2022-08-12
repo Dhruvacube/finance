@@ -1,6 +1,6 @@
-<div class="dropdown v-child">
+<div class="dropdown zindex-dropdown">
   <button class="btn btn-secondary btn-sm dropdown-toggle mx-2" type="button" id="dropdownMenuButton{{ expense.pk }}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="fa fa-cog"></i>
+    <i class="fa fa-cog .text-secondary"></i>
   </button>
   <div class="dropdown-menu dropdown-menu-right py-1" aria-labelledby="dropdownMenuButton{{ expense.pk }}">
     <a class="dropdown-item" href="{% url 'sheets:expense-edit' pk=expense.pk %}"><i class="fa fa-pencil fa-fw"></i> Edit</a>

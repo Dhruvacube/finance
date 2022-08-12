@@ -10,17 +10,31 @@
   {% include 'sheets/macros/page_header_end.html' %}
 
   {% if object_list %}
-    <ul class="list-group list-group-flush">
+  <div class="table-responsive ">
+    <table class="table table-borderless" style="height: 400px;">
+      <thead>
+        <tr>
+          <th class="text-uppercase" scope="col" style="width: 16.6%">Name</th>
+          <th class="text-uppercase" scope="col" style="width: 16.6%">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
       {% for category in object_list %}
-        <li class="list-group-item d-flex justify-content-between align-items-center v-parent v-parent-bg">
+      <tr class="v-parent v-parent-bg">
+        <td>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
           <span class="flex-fill text-truncate" data-toggle="tooltip" data-placement="top" title="{{ category }}">
             {% include 'sheets/macros/category.html' with category=category %}
           </span>
-
-          {% include 'sheets/macros/category_menu.html' with category=category %}
         </li>
+      </td>
+      <td>
+        {% include 'sheets/macros/category_menu.html' with category=category %}
+      </td>
       {% endfor %}
-    </ul>
+    </tbody>
+  </table>
+</div>
   {% else %}
     <p class="text-warning">No categories yet.</p>
   {% endif %}

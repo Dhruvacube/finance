@@ -63,7 +63,7 @@
                   <img src="{{ expense.image.url }}" width="100%">
                 {% endif %}
               </td>
-              <td>{% include 'sheets/macros/expense_menu.html' with expense=expense %}</td>
+              <td class="text-secondary">{% include 'sheets/macros/expense_menu.html' with expense=expense %}</td>
             </tr>
           {% endfor %}
         </tbody>

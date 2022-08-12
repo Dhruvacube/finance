@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f74e73dd57813a8496c153f15fbad7fa50f30bd8fceb50347b16b372e8097e95"
+            "sha256": "059e70548073f25cbf5e96ba21661b2903e8ea029e41b5e071e5a318ca6b41bf"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -228,6 +228,14 @@
             "index": "pypi",
             "version": "==22.2"
         },
+        "django-cockroachdb": {
+            "hashes": [
+                "sha256:0f3a33828455b3759a4bd2852714266a4985de239ce558a233c8bf41414148bb",
+                "sha256:4497a5cb16de355ef05163ff4c49daa1c09a1400e3cc61b9a27fb81aea051234"
+            ],
+            "index": "pypi",
+            "version": "==4.1"
+        },
         "django-colorfield": {
             "hashes": [
                 "sha256:29dffa09b2ce89f19504a53a120e5bfdbfe3e44621f33b3f94b0e6a572ae93c1",
@@ -413,11 +421,11 @@
         },
         "setuptools": {
             "hashes": [
-                "sha256:73bfae4791da7c1c56882ab17577d00f7a37a0347162aeb9360058de0dc25083",
-                "sha256:abcb76aa4decd7a17cbe0e4b31bdf549d106ba7f668e87e0860f5f7b84b9b3fe"
+                "sha256:378dcbfcc78b81432934fbd684ece21a82cd4b135315698732f7c8a4b97f81a9",
+                "sha256:7d9ae33bf128569f460a0745e87072a1996f33c9180316c20cc08b130ce816a6"
             ],
             "index": "pypi",
-            "version": "==63.4.2"
+            "version": "==64.0.1"
         },
         "six": {
             "hashes": [
@@ -714,11 +722,11 @@
         },
         "setuptools": {
             "hashes": [
-                "sha256:73bfae4791da7c1c56882ab17577d00f7a37a0347162aeb9360058de0dc25083",
-                "sha256:abcb76aa4decd7a17cbe0e4b31bdf549d106ba7f668e87e0860f5f7b84b9b3fe"
+                "sha256:378dcbfcc78b81432934fbd684ece21a82cd4b135315698732f7c8a4b97f81a9",
+                "sha256:7d9ae33bf128569f460a0745e87072a1996f33c9180316c20cc08b130ce816a6"
             ],
             "index": "pypi",
-            "version": "==63.4.2"
+            "version": "==64.0.1"
         },
         "toml": {
             "hashes": [
