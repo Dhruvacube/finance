@@ -239,15 +239,12 @@ class BanksCreateView(
     extra_context = {"title": "New Bank"}
 
     # InitialDataAsGETOptionsMixin
-    # fields_with_initial_data_as_get_option = {
-    #     "category": lambda option_value: Category.objects.get(
-    #         name=option_value
-    #     ),
-    #     "date": None,
-    #     "description": None,
-    #     "amount": None,
-    #     "repeat_next_month": lambda option_value: option_value == "True",
-    # }
+    fields_with_initial_data_as_get_option = {
+        "name": None,
+        "amount_deposited": None,
+        "amount_threshold": None,
+        "color": None,
+    }
 
     # SuccessMessageMixin
     success_message = "Bank Added!"

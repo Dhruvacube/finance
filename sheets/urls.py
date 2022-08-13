@@ -41,4 +41,8 @@ urlpatterns = [
         views.CategoryDeleteView.as_view(),
         name="category-delete",
     ),
+    #  Banks
+    path(
+        "banks/new/", views.BanksCreateView.as_view(), name="bank-new"
+    ),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

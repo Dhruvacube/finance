@@ -97,7 +97,6 @@ INSTALLED_APPS = [
     "sheets.apps.SheetsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
-    "django_browser_reload",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -110,7 +109,6 @@ MIDDLEWARE = [
     "django.middleware.cache.UpdateCacheMiddleware",
     "django.middleware.gzip.GZipMiddleware",
     # "htmlmin.middleware.HtmlMinifyMiddleware",
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.http.ConditionalGetMiddleware",
     "django.middleware.locale.LocaleMiddleware",
@@ -289,3 +287,5 @@ THEME_DICT = {
     'slate': '3A3F44',
     'superhero': '20374C'
 }
+
+DJANGO_ALLOW_ASYNC_UNSAFE = True

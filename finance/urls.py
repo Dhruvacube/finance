@@ -6,7 +6,6 @@ from django.views.generic import RedirectView
 from .utils.views import changetheme
 
 urlpatterns = [
-    path("__reload__/", include("django_browser_reload.urls")),
     path("", RedirectView.as_view(pattern_name="sheets:index", permanent=True), name="index"),
     path("sheets/", include("sheets.urls")),
     path("admin/", admin.site.urls),

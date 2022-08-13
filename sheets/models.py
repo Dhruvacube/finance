@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Banks(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True, db_index=True)
     amount_deposited = models.DecimalField(decimal_places=2, max_digits=10, validators=[MinValueValidator(Decimal("0.01"))])
     amount_threshold = models.DecimalField(decimal_places=2, max_digits=10, validators=[MinValueValidator(Decimal("0.01"))])
     color = ColorField(default="#08cf3d")
