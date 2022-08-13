@@ -4,16 +4,11 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pre-commit = "*"
-coverage = "*"
 
 [packages]
 django = "*"
-django-bootstrap4 = "*"
 django-colorfield = "*"
-daphne = "*"
 django-mathfilters = "*"
-django-crontab = "*"
 python-dateutil = "*"
 uvicorn = "*"
 whitenoise = "*"
@@ -22,6 +17,7 @@ setuptools = "*"
 django-bootstrap-v5 = "*"
 django-cockroachdb = "==4.1.*"
 watchfiles = "*"
+dj-database-url = "*"
 
 [requires]
 python_version = "3.9"

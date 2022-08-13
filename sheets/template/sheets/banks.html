@@ -18,6 +18,8 @@
           <th class="text-uppercase" scope="col" style="width: 16.6%">Name</th>
           <th class="text-uppercase" scope="col" style="width: 16.6%">Amount Left</th>
           <th class="text-uppercase" scope="col" style="width: 16.6%">Threshold</th>
+          <th class="text-uppercase" scope="col" style="width: 16.6%">Recurring Credit</th>
+          <th class="text-uppercase" scope="col" style="width: 16.6%">Recurring Credit Amount</th>
           <th class="text-uppercase" scope="col" style="width: 16.6%">Actions</th>
         </tr>
       </thead>
@@ -36,6 +38,12 @@
       </td>
       <td>
         {{bank.amount_threshold|intcomma|currency}}
+      </td>
+      <td>
+        {{bank.recurring_next_month|yesno:"Yes,No,Maybe" }}
+      </td>
+      <td>
+        {{bank.recurring_credit|intcomma|currency}}
       </td>
       <td>
         {% include 'sheets/macros/bank_menu.html' with bank=bank %}

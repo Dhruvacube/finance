@@ -157,7 +157,7 @@ Chart.defaults.global.defaultFontSize = 14;
       </div>
 <hr/>
       <h2 class="h3">Banks insights</h2>
-      <p><div class="chartjs-wrapper"><canvas id="chartjs-5" class="chartjs" width="undefined" height="undefined"></canvas><script>new Chart(document.getElementById("chartjs-5"),{"type":"polarArea","data":{"labels":[{% for i in banks %}"{{i.name}}",{% endfor %}],"datasets":[{"label":"{{currency_prefix}}","data":[{% for i in banks %}{{i.amount_deposited}},{% endfor %}],"backgroundColor":[{% for i in banks %}"{{i.display_color}}",{% endfor %}]}]}});</script></div></p>
+      <p><div class="chartjs-wrapper"><canvas id="chartjs-5" class="chartjs" width="undefined" height="undefined"></canvas><script>new Chart(document.getElementById("chartjs-5"),{"type":"doughnut","data":{"labels":[{% for i in banks %}"{{i.name}}",{% endfor %}],"datasets":[{"label":"{{currency_prefix}}","data":[{% for i in banks %}{{i.amount_deposited}},{% endfor %}],"backgroundColor":[{% for i in banks %}"{{i.display_color}}",{% endfor %}]}]}});</script></div></p>
     {% empty %}
       <p class="text-warning">Nothing to show yet.</p>
     {% endfor %}

@@ -4,6 +4,8 @@ import secrets
 from pathlib import Path
 from typing import Any
 
+import dj_database_url
+
 
 class _MissingSentinel:
     __slots__ = ()
@@ -90,7 +92,6 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    "django_crontab",
     "mathfilters",
     "colorfield",
     "bootstrap5",
@@ -156,12 +157,15 @@ WSGI_APPLICATION = "finance.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+if not bool(int(getattr(envConfig, 'COCKROACH_DB', 0))):
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
+else:
+    DATABASES = {'default': dj_database_url.config(default=os.environ['DATABASE_URL'], engine='django_cockroachdb')}
 
 
 # Auth
@@ -224,21 +228,13 @@ CURRENCY_SUFFIX = getattr(envConfig, "CURRENCY_SUFFIX", "")
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
-# Cron
-
-CRONJOBS = [
-    # At 00:05 on day-of-month 1.
-    # Thanks https://crontab.guru/#5_0_1_*_*
-    ("5 0 1 * *", "sheets.cron.recurring_expenses")
-]
-
 DEBUG = bool(int(getattr(envConfig, 'DEBUG', 0))) 
 
 if not DEBUG:
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
     CACHE_MIDDLEWARE_SECONDS = 0
 
-if bool(getattr(envConfig, 'WHITENOISE', 0)):
+if bool(int(getattr(envConfig, 'WHITENOISE', 0))):
     MIDDLEWARE = ([MIDDLEWARE[0]] +
                   ["whitenoise.middleware.WhiteNoiseMiddleware"] +
                   MIDDLEWARE[1:])
@@ -246,7 +242,7 @@ if bool(getattr(envConfig, 'WHITENOISE', 0)):
         "whitenoise.runserver_nostatic",
     ] + [INSTALLED_APPS[-1]])
 
-if bool(getattr(envConfig, 'PRODUCTION_SERVER', 0)):
+if bool(int(getattr(envConfig, 'PRODUCTION_SERVER', 0))):
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
     SECURE_SSL_REDIRECT = True
