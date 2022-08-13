@@ -14,6 +14,10 @@ class ExpenseForm(ModelForm):
 class CategoryForm(ModelForm):
     required_css_class = "form-group-required"
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["color"].widget.attrs["data-jscolor"] = ""
+
     class Meta:
         model = Category
         fields = "__all__"

@@ -15,16 +15,17 @@ class Banks(models.Model):
 
     def __str__(self):
         return self.name
-
+    
     @property
     def display_color(self):
-        account_percentage = abs(self.amount_deposited / self.amount_threshold)
+        account_percentage = abs(self.amount_threshold / self.amount_deposited)
         if account_percentage < 0.75 and account_percentage > 0.5:
             return "#08cf3d"
         if account_percentage < 0.5 and account_percentage > 0.25:
             return "#ffc000"
         if account_percentage < 0.25:
             return "#ff0000"
+    
 
     class Meta:
         verbose_name_plural = "Banks"

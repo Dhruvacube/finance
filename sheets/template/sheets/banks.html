@@ -1,6 +1,7 @@
 {% extends 'sheets/common/base.html' %}
 
-{% load finance_extras %}
+{% load finance_extras humanize %}
+
 
 {% block content %}
   {% include 'sheets/macros/page_header_beginning.html' with title=title %}
@@ -15,6 +16,8 @@
       <thead>
         <tr>
           <th class="text-uppercase" scope="col" style="width: 16.6%">Name</th>
+          <th class="text-uppercase" scope="col" style="width: 16.6%">Amount Left</th>
+          <th class="text-uppercase" scope="col" style="width: 16.6%">Threshold</th>
           <th class="text-uppercase" scope="col" style="width: 16.6%">Actions</th>
         </tr>
       </thead>
@@ -27,6 +30,12 @@
             {% include 'sheets/macros/category.html' with category=bank %}
           </span>
         </li>
+      </td>
+      <td>
+        {{bank.amount_deposited|intcomma|currency}}
+      </td>
+      <td>
+        {{bank.amount_threshold|intcomma|currency}}
       </td>
       <td>
         {% include 'sheets/macros/bank_menu.html' with bank=bank %}

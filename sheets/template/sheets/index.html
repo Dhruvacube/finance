@@ -1,6 +1,5 @@
 {% extends 'sheets/common/base.html' %}
-{% load humanize %}
-{% load finance_extras %}
+{% load finance_extras humanize %}
 
 {% block content %}
   {% include 'sheets/macros/page_header_beginning.html' with title=title %}
@@ -83,79 +82,82 @@ Chart.defaults.global.defaultFontSize = 14;
   <div class="tab-content" id="myTabContent">
     {% for year, category_dict in monthly_insights_dict.items %}
       <div class="tab-pane fade {% if forloop.last %}show active{% endif %}" id="monthlyInsights{{ year }}" role="tabpanel" aria-labelledby="monthlyInsights{{ year }}-tab">
-        <canvas class="my-4" id="canvas{{ year }}"></canvas>
+        <canvas class="my-4" id="canvas{{ year }}" width="500px" height="400px"></canvas>
         <script type="module">
-var canvas = document.getElementById('canvas{{ year }}');
-var ctx = canvas.getContext('2d');
-var chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-      datasets: [
-        {% for category, amounts_per_month_list in category_dict.items %}
-          {
-            label: '{{ category|default:"No category"|escapejs }}',
-            backgroundColor: '{{ category.color|default:"#ddd" }}',
-            data: [
-              {% for amount in amounts_per_month_list %}
-                {{ amount }},
-              {% endfor %}
-            ],
-          },
-        {% endfor %}
-      ],
-    },
-    options: {
-      tooltips: {
-        mode: 'index',
-        intersect: false,
-        callbacks: {
-          label: function(tooltipItem, data) {
-            let yLabel = tooltipItem.yLabel;
-            return yLabel ? currency(yLabel.toFixed(2)) : 0;
-          },
-          footer: (tooltipItems, data) => {
-            let total = tooltipItems.reduce((a, e) => a + parseFloat(e.yLabel), .0);
-            return 'Total: ' + currency(total.toFixed(2));
-          }
-        },
-        titleFontSize: 18,
-        bodyFontSize: 16,
-      },
-      responsive: true,
-      scales: {
-        xAxes: [{
-          stacked: true,
-        }],
-        yAxes: [{
-          stacked: true,
-          ticks: {
-            callback: function (value) {
-              return currency(value.toString());
+          var canvas = document.getElementById('canvas{{ year }}');
+          var ctx = canvas.getContext('2d');
+          var chart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [
+                  {% for category, amounts_per_month_list in category_dict.items %}
+                    {
+                      label: '{{ category|default:"No category"|escapejs }}',
+                      backgroundColor: '{{ category.color|default:"#ddd" }}',
+                      data: [
+                        {% for amount in amounts_per_month_list %}
+                          {{ amount }},
+                        {% endfor %}
+                      ],
+                    },
+                  {% endfor %}
+                ],
+              },
+              options: {
+                tooltips: {
+                  mode: 'index',
+                  intersect: false,
+                  callbacks: {
+                    label: function(tooltipItem, data) {
+                      let yLabel = tooltipItem.yLabel;
+                      return yLabel ? currency(yLabel.toFixed(2)) : 0;
+                    },
+                    footer: (tooltipItems, data) => {
+                      let total = tooltipItems.reduce((a, e) => a + parseFloat(e.yLabel), .0);
+                      return 'Total: ' + currency(total.toFixed(2));
+                    }
+                  },
+                  titleFontSize: 18,
+                  bodyFontSize: 16,
+                },
+                responsive: true,
+                scales: {
+                  xAxes: [{
+                    stacked: true,
+                  }],
+                  yAxes: [{
+                    stacked: true,
+                    ticks: {
+                      callback: function (value) {
+                        return currency(value.toString());
+                      }
+                    }
+                  }]
+                },
+                onHover: function(evt) {
+                  var activeElement = chart.getElementAtEvent(evt);
+                  canvas.style.cursor = activeElement.length ? "pointer" : "default";
+                }
+              }
+          });
+
+          canvas.onclick = function(evt) {
+            var activeElement = chart.getElementAtEvent(evt);
+            if (activeElement.length) {
+              var month = activeElement[0]._index + 1;
+
+              // XXX: hardcoding the url format is bad
+              var url = '/sheets/' + {{ year }} + '/' + month + '/';
+
+              window.location.href = url;
             }
-          }
-        }]
-      },
-      onHover: function(evt) {
-        var activeElement = chart.getElementAtEvent(evt);
-        canvas.style.cursor = activeElement.length ? "pointer" : "default";
-      }
-    }
-});
-
-canvas.onclick = function(evt) {
-  var activeElement = chart.getElementAtEvent(evt);
-  if (activeElement.length) {
-    var month = activeElement[0]._index + 1;
-
-    // XXX: hardcoding the url format is bad
-    var url = '/sheets/' + {{ year }} + '/' + month + '/';
-
-    window.location.href = url;
-  }
-};
+          };
         </script>
       </div>
+<hr/>
+      <h2 class="h3">Banks insights</h2>
+      <p><div class="chartjs-wrapper"><canvas id="chartjs-5" class="chartjs" width="undefined" height="undefined"></canvas><script>new Chart(document.getElementById("chartjs-5"),{"type":"polarArea","data":{"labels":[{% for i in banks %}"{{i.name}}",{% endfor %}],"datasets":[{"label":"{{currency_prefix}}","data":[{% for i in banks %}{{i.amount_deposited}},{% endfor %}],"backgroundColor":[{% for i in banks %}"{{i.display_color}}",{% endfor %}]}]}});</script></div></p>
     {% empty %}
       <p class="text-warning">Nothing to show yet.</p>
     {% endfor %}

@@ -80,3 +80,13 @@ def theme_range():
     for i in settings.THEME_DICT:
         a+=f'<a class="dropdown-item" href="{reverse("changetheme")}?theme={i}"><i class="bi bi-circle-fill" style="color: #{settings.THEME_DICT[i]}"></i> {i.title()}</a>'
     return mark_safe(a)
+
+@register.filter
+def display_color(amount_deposited, amount_threshold):
+    account_percentage = abs(amount_threshold /amount_deposited)
+    if account_percentage < 0.75 and account_percentage > 0.5:
+        return "#08cf3d"
+    if account_percentage < 0.5 and account_percentage > 0.25:
+        return "#ffc000"
+    if account_percentage < 0.25:
+        return "#ff0000"
