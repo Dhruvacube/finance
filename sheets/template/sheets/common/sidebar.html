@@ -58,7 +58,7 @@
     <ul class="fa-ul nav nav-custom flex-column">
       <li class="nav-item">
         {% url 'sheets:categories' as categories_url %}
-        {% url 'sheets:categories' as banks_url %}
+        {% url 'sheets:banks' as banks_url %}
         {% include "sheets/macros/sidebar_link.html" with url=categories_url icon="fa-pencil-square-o" text="Edit categories" %}
         {% include "sheets/macros/sidebar_link.html" with url=banks_url icon="fa-pencil-square-o" text="Edit Banks" %}
       </li>

@@ -227,6 +227,10 @@ class CategoryDeleteView(
     success_message = "Category deleted!"
 
 
+class BanksListView(ListView):
+    template_name = "sheets/banks.html"
+    model = Banks
+    extra_context = {"title": "Banks"}
 
 class BanksCreateView(
     LoginRequiredMixin,
@@ -243,7 +247,6 @@ class BanksCreateView(
         "name": None,
         "amount_deposited": None,
         "amount_threshold": None,
-        "color": None,
     }
 
     # SuccessMessageMixin
@@ -254,10 +257,10 @@ class BanksUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = "finance/generic/new-edit-form.html"
     model = Banks
     form_class = BanksForm
-    extra_context = {"title": "Edit Expense"}
+    extra_context = {"title": "Edit Bank details"}
 
     # SuccessMessageMixin
-    success_message = "Expense modified!"
+    success_message = "Bank details updated!"
 
 
 class BanksDeleteView(
@@ -268,19 +271,9 @@ class BanksDeleteView(
     #  redirect).
 
     model = Banks
-    success_url = reverse_lazy("sheets:index")
+    template_name = "finance/generic/delete-form.html"
+    extra_context = {"title": "Delete Category"}
+    success_url = reverse_lazy("sheets:banks")
 
     # SuccessMessageMixin
     success_message = "Bank deleted!"
-
-    def get_success_url(self):
-        object = self.object
-        # XXX: this can probably be optimized
-        if similar_object := (
-            self.model.objects.exclude(pk=object.pk)
-            .filter(date__year=object.date.year, date__month=object.date.month)
-            .first()
-        ):
-            #  There's a least one other object with the same year and month
-            return similar_object.get_absolute_url()
-        return super().get_success_url()

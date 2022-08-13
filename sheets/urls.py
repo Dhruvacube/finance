@@ -42,7 +42,19 @@ urlpatterns = [
         name="category-delete",
     ),
     #  Banks
+    path("banks/", views.BanksListView.as_view(), name="banks"),
     path(
-        "banks/new/", views.BanksCreateView.as_view(), name="bank-new"
+        "banks/new/", views.BanksCreateView.as_view(), name="banks-new"
+    ),
+    
+    path(
+        "banks/<int:pk>/",
+        views.BanksUpdateView.as_view(),
+        name="banks-edit",
+    ),
+    path(
+        "banks/<int:pk>/delete/",
+        views.BanksDeleteView.as_view(),
+        name="banks-delete",
     ),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -4,8 +4,8 @@
 
 {% block content %}
   {% include 'sheets/macros/page_header_beginning.html' with title=title %}
-    <a href="{% url 'sheets:category-new' %}" class="btn btn-block btn-success btn-sm">
-      <i class="fa fa-plus fa-fw"></i> New Category
+    <a href="{% url 'sheets:banks-new' %}" class="btn btn-block btn-success btn-sm">
+      <i class="fa fa-plus fa-fw"></i> New Bank
     </a>
   {% include 'sheets/macros/page_header_end.html' %}
 
@@ -19,23 +19,23 @@
         </tr>
       </thead>
       <tbody>
-      {% for category in object_list %}
+      {% for bank in object_list %}
       <tr class="v-parent v-parent-bg">
         <td>
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          <span class="flex-fill text-truncate" data-toggle="tooltip" data-placement="top" title="{{ category }}">
-            {% include 'sheets/macros/category.html' with category=category %}
+          <span class="flex-fill text-truncate" data-toggle="tooltip" data-placement="top" title="{{ bank }}">
+            {% include 'sheets/macros/category.html' with category=bank %}
           </span>
         </li>
       </td>
       <td>
-        {% include 'sheets/macros/category_menu.html' with category=category %}
+        {% include 'sheets/macros/bank_menu.html' with bank=bank %}
       </td>
       {% endfor %}
     </tbody>
   </table>
 </div>
   {% else %}
-    <p class="text-warning">No categories yet.</p>
+    <p class="text-warning">No banks added yet.</p>
   {% endif %}
 {% endblock %}

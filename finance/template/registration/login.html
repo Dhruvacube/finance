@@ -9,7 +9,11 @@
     <h1 class="mb-4 text-center">Sign in</h1>
     <div class="card">
       <div class="card-body">
-        <form action="{% url 'login' %}" method="post" class="form">
+        {% if next %}
+        <form action="{% url 'login' %}?next={{next}}" method="post" class="form">
+        {%else%}
+        <form action="{% url 'login' %}" method="post" >
+        {% endif %}
           {% csrf_token %}
           {% bootstrap_form form %}
           {% bootstrap_button '<i class="fa fa-sign-in"></i> Sign In' button_type="submit" button_class="btn-block btn-primary" %}

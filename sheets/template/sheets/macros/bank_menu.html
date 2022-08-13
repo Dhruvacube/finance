@@ -1,0 +1,9 @@
+<div class="dropdown ml-2 zindex-dropdown">
+  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{ bank.pk }}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fa fa-cog"></i>
+  </button>
+  <div class="dropdown-menu dropdown-menu-right py-1" aria-labelledby="dropdownMenuButton{{ bank.pk }}">
+    <a class="dropdown-item" href="{% url 'sheets:banks-edit' pk=bank.pk %}"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+    <a class="dropdown-item text-danger" href="{% url 'sheets:banks-delete' pk=bank.pk %}"><i class="fa fa-trash fa-fw"></i> Delete</a>
+  </div>
+</div>

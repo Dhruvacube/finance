@@ -21,6 +21,7 @@ pillow = "*"
 setuptools = "*"
 django-bootstrap-v5 = "*"
 django-cockroachdb = "==4.1.*"
+watchfiles = "*"
 
 [requires]
 python_version = "3.9"

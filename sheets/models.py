@@ -12,7 +12,6 @@ class Banks(models.Model):
     name = models.CharField(max_length=255, unique=True, db_index=True)
     amount_deposited = models.DecimalField(decimal_places=2, max_digits=10, validators=[MinValueValidator(Decimal("0.01"))])
     amount_threshold = models.DecimalField(decimal_places=2, max_digits=10, validators=[MinValueValidator(Decimal("0.01"))])
-    color = ColorField(default="#08cf3d")
 
     def __str__(self):
         return self.name
@@ -29,6 +28,9 @@ class Banks(models.Model):
 
     class Meta:
         verbose_name_plural = "Banks"
+    
+    def get_absolute_url(self):
+        return reverse('sheets:banks')
 
 
 class Category(models.Model):
