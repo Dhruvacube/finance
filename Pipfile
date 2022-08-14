@@ -22,6 +22,7 @@ dj-database-url = "*"
 psycopg2 = "*"
 gunicorn = "*"
 sentry-sdk = "*"
+certifi = "*"
 
 [requires]
 python_version = "3.9"
