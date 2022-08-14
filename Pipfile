@@ -18,6 +18,7 @@ django-bootstrap-v5 = "*"
 django-cockroachdb = "==4.1.*"
 watchfiles = "*"
 dj-database-url = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.9"

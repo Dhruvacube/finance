@@ -165,7 +165,7 @@ if not bool(int(getattr(envConfig, 'COCKROACH_DB', 0))):
         }
     }
 else:
-    DATABASES = {'default': dj_database_url.config(default=os.environ['DATABASE_URL'], engine='django_cockroachdb')}
+    DATABASES = {'default': dj_database_url.config(default=getattr(envConfig, 'DATABASE_URL'), engine='django_cockroachdb')}
 
 
 # Auth
