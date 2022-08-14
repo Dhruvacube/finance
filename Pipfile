@@ -23,6 +23,7 @@ psycopg2 = "*"
 gunicorn = "*"
 sentry-sdk = "*"
 certifi = "*"
+uvloop = "*"
 
 [requires]
 python_version = "3.9"
