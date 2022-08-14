@@ -2,6 +2,8 @@ Caddyfile
 docker-compose.env
 docker-compose.yml
 
+.nohup
+nohup
 .conf
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,django
