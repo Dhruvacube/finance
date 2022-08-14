@@ -110,14 +110,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.humanize"
+    "django.contrib.humanize",
+    "compressor",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.middleware.cache.UpdateCacheMiddleware",
     "django.middleware.gzip.GZipMiddleware",
-    # "htmlmin.middleware.HtmlMinifyMiddleware",
+    "htmlmin.middleware.HtmlMinifyMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.http.ConditionalGetMiddleware",
     "django.middleware.locale.LocaleMiddleware",
@@ -129,6 +130,7 @@ MIDDLEWARE = [
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.cache.FetchFromCacheMiddleware",
+    "htmlmin.middleware.MarkRequestMiddleware",
 ]
 
 ROOT_URLCONF = "finance.urls"
@@ -224,6 +226,12 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "compressor.finders.CompressorFinder",
+]
+
 # Currency formatting
 
 CURRENCY_GROUP_SEPARATOR = getattr(envConfig, "CURRENCY_GROUP_SEPARATOR", " ")
@@ -244,6 +252,8 @@ if bool(int(getattr(envConfig, 'WHITENOISE', 0))):
         "whitenoise.runserver_nostatic",
     ] + [INSTALLED_APPS[-1]])
     STATIC_ROOT = BASE_DIR/ "staticfiles"
+    WHITENOISE_MAX_AGE = 9000
+    WHITENOISE_SKIP_COMPRESS_EXTENSIONS = []
 else:
     STATIC_ROOT = BASE_DIR/ "static"
 
@@ -300,3 +310,41 @@ if bool(int(getattr(envConfig, 'LOGGING', 0))):
 
         LOGGING = LOGGING
         logging.config.dictConfig(LOGGING)
+
+
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION":
+        os.environ.get("REDIS_URL", "redis://127.0.0.1:6379"
+                       ),  # expected port, otherwise you can alter it
+    }
+}
+
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
+COMPRESS_PRECOMPILERS = (
+    ("text/x-sass", "django_libsass.SassCompiler"),
+    ("text/x-scss", "django_libsass.SassCompiler"),
+)
+COMPRESS_CSS_HASHING_METHOD = "content"
+COMPRESS_FILTERS = {
+    "css": [
+        "compressor.filters.css_default.CssAbsoluteFilter",
+        "compressor.filters.cssmin.rCSSMinFilter",
+    ],
+    "js": [
+        "compressor.filters.jsmin.JSMinFilter",
+    ],
+}
+HTML_MINIFY = True
+KEEP_COMMENTS_ON_MINIFYING = False
+
+SESSION_COOKIE_AGE = 1 * 60 * 60
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
