@@ -12,7 +12,7 @@ django = "*"
 django-colorfield = "*"
 django-mathfilters = "*"
 python-dateutil = "*"
-uvicorn = "*"
+uvicorn = {extras = ["standard"], version = "*"}
 whitenoise = "*"
 pillow = "*"
 setuptools = "*"
