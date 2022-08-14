@@ -27,6 +27,7 @@
 * [About](#about)
 * [Features](#features)
 * [Installation & Configuration](#installation--configuration)
+* [Formatting Note](##formatting-note)
 * [Contributing](#contributing)
 
 
@@ -44,22 +45,10 @@ And it's also available for you.
 
 A basic authorization system exists but this application is not intended to be hosted on a public network (yet?). It is designed to be self-hosted locally (e.g. on a Raspberry Pi) and used by a few users within the same household. Also you can use [Cloudflare Zero Trust](https://www.cloudflare.com/products/zero-trust/) if you want it to be hosted on the public internet.
 
-#### 1. Categories
-
-Define categories, and their color.
-
-
-#### 2. Sheet
-
-Add dated and categorized expenses. They are automatically grouped by month (i.e. sheet).
-
-#### 3. Overview
-
-Analyze the overall statistics.
-
-#### 4. History
-
-Explore and filter all expenses.
+#### 1. __Categories__: Define categories, and their color.
+#### 2. __Sheet__: Add dated and categorized expenses. They are automatically grouped by month (i.e. sheet).
+#### 3. __Overview__: Analyze the overall statistics.
+#### 4. __History__: Explore and filter all expenses.
 
 ## Installation & Configuration
 
@@ -100,7 +89,13 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-#### Formatting Note
+**You should now be able to work.**
+
+Since finance is primarily a Django project, you should read [Django's documentation](https://docs.djangoproject.com/en/4.1/) if you are not familiar with it already.
+
+***
+
+## Formatting Note
 
    **Currency formatting**
 
@@ -128,9 +123,4 @@ python manage.py createsuperuser
 ## Contributing
 
 I maintain this project primarily for my own use. If you can think of any relevant changes that should be incorporated into the code, you can contribute by opening an issue or submitting a pull request.
-
-
-**You should now be able to work.**
-
-Since finance is primarily a Django project, you should read [Django's documentation](https://docs.djangoproject.com/en/3.1/) if you are not familiar with it already.
 
