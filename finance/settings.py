@@ -224,9 +224,6 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-STATIC_ROOT = BASE_DIR/ "staticfiles"
-
-
 # Currency formatting
 
 CURRENCY_GROUP_SEPARATOR = getattr(envConfig, "CURRENCY_GROUP_SEPARATOR", " ")
@@ -246,6 +243,10 @@ if bool(int(getattr(envConfig, 'WHITENOISE', 0))):
     INSTALLED_APPS = (INSTALLED_APPS[0:-1] + [
         "whitenoise.runserver_nostatic",
     ] + [INSTALLED_APPS[-1]])
+    STATIC_ROOT = BASE_DIR/ "staticfiles"
+else:
+    STATIC_ROOT = BASE_DIR/ "static"
+
 
 if bool(int(getattr(envConfig, 'PRODUCTION_SERVER', 0))):
     CSRF_COOKIE_SECURE = True
