@@ -1,0 +1,17 @@
+/root/.local/share/virtualenvs/finance.dhruvashaw.me-TtsAhx_u/lib/python3.9/site-packages/whitenoise/base.py:115: UserWarning: No directory at: /static/
+  warnings.warn(f"No directory at: {root}")
+INFO:     Started server process [459512]
+INFO:     Waiting for application startup.
+INFO:     ASGI 'lifespan' protocol appears unsupported.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8585 (Press CTRL+C to quit)
+WARNING:  Unsupported upgrade request.
+WARNING:  No supported WebSocket library detected. Please use 'pip install uvicorn[standard]', or install 'websockets' or 'wsproto' manually.
+WARNING:  Unsupported upgrade request.
+WARNING:  No supported WebSocket library detected. Please use 'pip install uvicorn[standard]', or install 'websockets' or 'wsproto' manually.
+WARNING:  Unsupported upgrade request.
+WARNING:  No supported WebSocket library detected. Please use 'pip install uvicorn[standard]', or install 'websockets' or 'wsproto' manually.
+WARNING:  Unsupported upgrade request.
+WARNING:  No supported WebSocket library detected. Please use 'pip install uvicorn[standard]', or install 'websockets' or 'wsproto' manually.
+WARNING:  Unsupported upgrade request.
+WARNING:  No supported WebSocket library detected. Please use 'pip install uvicorn[standard]', or install 'websockets' or 'wsproto' manually.

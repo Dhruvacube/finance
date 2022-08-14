@@ -12,7 +12,6 @@ django = "*"
 django-colorfield = "*"
 django-mathfilters = "*"
 python-dateutil = "*"
-uvicorn = "*"
 whitenoise = "*"
 pillow = "*"
 setuptools = "*"
@@ -20,6 +19,7 @@ django-bootstrap-v5 = "*"
 django-cockroachdb = "==4.1.*"
 dj-database-url = "*"
 psycopg2 = "*"
+uvicorn = {extras = ["standard"], version = "*"}
 
 [requires]
 python_version = "3.9"
