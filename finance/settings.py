@@ -285,3 +285,10 @@ THEME_DICT = {
 }
 
 DJANGO_ALLOW_ASYNC_UNSAFE = True
+
+if bool(int(getattr(envConfig, 'LOGGING', 0))):
+    from .django_logging import LOGGING
+    import logging.config
+
+    LOGGING = LOGGING
+    logging.config.dictConfig(LOGGING)
