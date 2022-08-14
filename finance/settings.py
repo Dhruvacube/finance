@@ -224,7 +224,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-STATIC_ROOT = "/static/"
+STATIC_ROOT = BASE_DIR/ "staticfiles"
 
 
 # Currency formatting
