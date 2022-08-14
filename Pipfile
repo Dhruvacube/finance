@@ -21,6 +21,7 @@ django-cockroachdb = "==4.1.*"
 dj-database-url = "*"
 psycopg2 = "*"
 gunicorn = "*"
+sentry-sdk = "*"
 
 [requires]
 python_version = "3.9"

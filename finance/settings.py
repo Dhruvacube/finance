@@ -3,9 +3,9 @@ import os
 import secrets
 from pathlib import Path
 from typing import Any
-
+from sentry_sdk.integrations.django import DjangoIntegration
+import sentry_sdk
 import dj_database_url
-
 
 class _MissingSentinel:
     __slots__ = ()
@@ -78,6 +78,14 @@ class _envConfig:
 
 
 envConfig: Any = _envConfig()
+
+if bool(getattr(envConfig, 'SENTRY_URL', 0)):
+    sentry_sdk.init(
+        dsn=envConfig.SENTRY_URL,
+        integrations=[DjangoIntegration()],
+        traces_sample_rate=1.0,
+        send_default_pii=True,
+    )
 
 
 # Quick-start development settings - unsuitable for production
@@ -232,7 +240,6 @@ DEBUG = bool(int(getattr(envConfig, 'DEBUG', 0)))
 
 if not DEBUG:
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-    CACHE_MIDDLEWARE_SECONDS = 0
 
 if bool(int(getattr(envConfig, 'WHITENOISE', 0))):
     MIDDLEWARE = ([MIDDLEWARE[0]] +
