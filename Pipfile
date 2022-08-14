@@ -20,6 +20,7 @@ django-bootstrap-v5 = "*"
 django-cockroachdb = "==4.1.*"
 dj-database-url = "*"
 psycopg2 = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.9"
