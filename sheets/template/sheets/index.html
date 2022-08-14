@@ -58,7 +58,6 @@
       </ul>
     {% endif %}
   </div>
-
   <script>
 function currency(string_amount) {
   // XXX: Sadly, this is not a trivial as in Python
@@ -78,7 +77,6 @@ Chart.defaults.global.defaultFontFamily = "'Lato', sans-serif";
 Chart.defaults.global.defaultFontColor = "#343a40";
 Chart.defaults.global.defaultFontSize = 14;
   </script>
-
   <div class="tab-content" id="myTabContent">
     {% for year, category_dict in monthly_insights_dict.items %}
       <div class="tab-pane fade {% if forloop.last %}show active{% endif %}" id="monthlyInsights{{ year }}" role="tabpanel" aria-labelledby="monthlyInsights{{ year }}-tab">
