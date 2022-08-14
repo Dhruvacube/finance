@@ -19,7 +19,7 @@ from finance.utils.views import (InitialDataAsGETOptionsMixin,
                                  SuccessMessageOnDeleteViewMixin)
 
 from .forms import CategoryForm, ExpenseForm, BanksForm
-from .models import Banks, Category, Expense, Banks
+from .models import Category, Expense, Banks
 
 
 @sync_to_async
