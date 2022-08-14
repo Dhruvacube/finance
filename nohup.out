@@ -3,3 +3,9 @@
 [2022-08-14 20:04:35 +0530] [472199] [INFO] Using worker: finance.workers.DynamicUvicornWorker
 [2022-08-14 20:04:35 +0530] [472200] [INFO] Booting worker with pid: 472200
 [2022-08-14 20:04:36 +0530] [472200] [INFO] Started server process [472200]
+[2022-08-14 20:47:07 +0530] [472199] [INFO] Handling signal: term
+[2022-08-14 20:47:07 +0530] [472200] [INFO] Shutting down
+[2022-08-14 20:47:07 +0530] [472200] [INFO] Error while closing socket [Errno 9] Bad file descriptor
+[2022-08-14 20:47:07 +0530] [472200] [INFO] Finished server process [472200]
+[2022-08-14 20:47:07 +0530] [472200] [INFO] Worker exiting (pid: 472200)
+[2022-08-14 20:47:07 +0530] [472199] [INFO] Shutting down: Master
