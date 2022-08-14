@@ -220,11 +220,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = "/staticfiles/"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+STATIC_ROOT = BASE_DIR/ "staticfiles"
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -251,11 +253,9 @@ if bool(int(getattr(envConfig, 'WHITENOISE', 0))):
     INSTALLED_APPS = (INSTALLED_APPS[0:-1] + [
         "whitenoise.runserver_nostatic",
     ] + [INSTALLED_APPS[-1]])
-    STATIC_ROOT = BASE_DIR/ "staticfiles"
     WHITENOISE_MAX_AGE = 9000
     WHITENOISE_SKIP_COMPRESS_EXTENSIONS = []
-else:
-    STATIC_ROOT = BASE_DIR/ "static"
+
 
 
 if bool(int(getattr(envConfig, 'PRODUCTION_SERVER', 0))):
