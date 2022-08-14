@@ -237,11 +237,9 @@ CURRENCY_SUFFIX = getattr(envConfig, "CURRENCY_SUFFIX", "")
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 DEBUG = bool(int(getattr(envConfig, 'DEBUG', 0))) 
-
-if not DEBUG:
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
+    
 if bool(int(getattr(envConfig, 'WHITENOISE', 0))):
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
     MIDDLEWARE = ([MIDDLEWARE[0]] +
                   ["whitenoise.middleware.WhiteNoiseMiddleware"] +
                   MIDDLEWARE[1:])
