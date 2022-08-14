@@ -20,7 +20,7 @@ django-bootstrap-v5 = "*"
 django-cockroachdb = "==4.1.*"
 dj-database-url = "*"
 psycopg2 = "*"
-gunicorn = "*"
+gunicorn = {version = "*", sys_platform = "== 'win32'"}
 sentry-sdk = "*"
 certifi = "*"
 rcssmin = "*"
@@ -32,6 +32,7 @@ celery = "*"
 hiredis = "*"
 html5lib = "*"
 redis = "*"
+uvloop = {version = "*", sys_platform = "== 'win32'"}
 
 [requires]
 python_version = "3.9"
