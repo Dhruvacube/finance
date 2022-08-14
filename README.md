@@ -24,11 +24,9 @@
 </p>
 
 ## Table of contents
-* [About](#About)
-* [Features](#Features)
+* [About](#about)
+* [Features](#features)
 * [Installation & Configuration](#installation--configuration)
-* [Updating](#updating)
-* [License](#license)
 * [Contributing](#contributing)
 
 
@@ -65,53 +63,6 @@ Explore and filter all expenses.
 
 ## Installation & Configuration
 
-   **Currency formatting**
-
-   In finance, money is represented by positive decimals of the form "xxxxxxxx.yy". The user is free to change the formatting to use the currency of their choice, by setting the following environment variables:
-
-   * `CURRENCY_GROUP_SEPARATOR`: A single character which separates the whole number into groups of 3 digits.<sup>1</sup>
-   * `CURRENCY_DECIMAL_SEPARATOR`: A single character that separates the whole part from the decimal part.<sup>1</sup>
-   * `CURRENCY_PREFIX`: A string placed in front of the number.<sup>1</sup>
-   * `CURRENCY_SUFFIX`: A string placed behind the number.<sup>1</sup>
-
-   By default, it formats money as French euros. For instance, here's how to format as US dollars:
-
-   ```
-   CURRENCY_GROUP_SEPARATOR=,
-   CURRENCY_DECIMAL_SEPARATOR=.
-   CURRENCY_PREFIX=$
-   CURRENCY_SUFFIX=
-   ```
-
-   ---
-
-   <sup>1</sup>: Note: If it contains spaces, make sure to use [non-breaking spaces](https://en.wikipedia.org/wiki/Non-breaking_space). This is simply to prevent visual "glitches".
-
-
-8. Start cron inside the container:
-
-   ```bash
-   docker-compose exec finance service cron start
-   ```
-
-
-## License
-
-Distributed under the GPLv3 License. See `COPYING` for more information.
-
-
-## Contributing
-
-I maintain this project primarily for my own use. If you can think of any relevant changes that should be incorporated into the code, you can contribute by opening an issue or submitting a pull request.
-
-See the [Developer documentation](#developer-documentation) section below for more information.
-
-## Developer documentation
-
-**_This section is WIP_**
-
-### The development environment
-
 #### Set up
 
 1. Install [Pipenv](https://pypi.org/project/pipenv/), if you haven't already.
@@ -139,6 +90,45 @@ This action spawns a shell within the virtualenv.
 
 
 ---
+
+#### Migrating data and creating superuser
+
+It uses [Cockroach DB](https://cockroachlabs.cloud/) before that change [example.conf](/blob/master/example.conf) to `.conf` and inside do the changes accordingly. After run the following commands.
+
+```
+python manage.py migrate
+python manage.py createsuperuser
+```
+
+#### Formatting Note
+
+   **Currency formatting**
+
+   In finance, money is represented by positive decimals of the form "xxxxxxxx.yy". The user is free to change the formatting to use the currency of their choice, by setting the following environment variables:
+
+   * `CURRENCY_GROUP_SEPARATOR`: A single character which separates the whole number into groups of 3 digits.<sup>1</sup>
+   * `CURRENCY_DECIMAL_SEPARATOR`: A single character that separates the whole part from the decimal part.<sup>1</sup>
+   * `CURRENCY_PREFIX`: A string placed in front of the number.<sup>1</sup>
+   * `CURRENCY_SUFFIX`: A string placed behind the number.<sup>1</sup>
+
+   By default, it formats money as French euros. For instance, here's how to format as US dollars:
+
+   ```
+   CURRENCY_GROUP_SEPARATOR=,
+   CURRENCY_DECIMAL_SEPARATOR=.
+   CURRENCY_PREFIX=$
+   CURRENCY_SUFFIX=
+   ```
+
+   ---
+
+   <sup>1</sup>: Note: If it contains spaces, make sure to use [non-breaking spaces](https://en.wikipedia.org/wiki/Non-breaking_space). This is simply to prevent visual "glitches".
+
+
+## Contributing
+
+I maintain this project primarily for my own use. If you can think of any relevant changes that should be incorporated into the code, you can contribute by opening an issue or submitting a pull request.
+
 
 **You should now be able to work.**
 
