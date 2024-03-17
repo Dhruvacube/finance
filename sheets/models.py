@@ -7,10 +7,19 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
+
 class Banks(models.Model):
     name = models.CharField(max_length=255, unique=True, db_index=True)
-    amount_deposited = models.DecimalField(decimal_places=2, max_digits=10, validators=[MinValueValidator(Decimal("0.01"))])
-    amount_threshold = models.DecimalField(decimal_places=2, max_digits=10, validators=[MinValueValidator(Decimal("0.01"))])
+    amount_deposited = models.DecimalField(
+        decimal_places=2,
+        max_digits=10,
+        validators=[MinValueValidator(Decimal("0.01"))],
+    )
+    amount_threshold = models.DecimalField(
+        decimal_places=2,
+        max_digits=10,
+        validators=[MinValueValidator(Decimal("0.01"))],
+    )
     recurring_next_month = models.BooleanField(
         default=False,
         verbose_name=_("Recurring credit next month?"),
@@ -19,8 +28,15 @@ class Banks(models.Model):
             " start of next month. This is particularly useful for salary adjustments"
         ),
     )
-    recurring_credit = models.DecimalField(null=True, blank=True,default=0.00,decimal_places=2, max_digits=10, validators=[MinValueValidator(Decimal("0.00"))])
-    color = ColorField(default='#ffffff')
+    recurring_credit = models.DecimalField(
+        null=True,
+        blank=True,
+        default=0.00,
+        decimal_places=2,
+        max_digits=10,
+        validators=[MinValueValidator(Decimal("0.00"))],
+    )
+    color = ColorField(default="#ffffff")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -30,7 +46,7 @@ class Banks(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     @property
     def display_color(self):
         account_percentage = abs(self.amount_threshold / self.amount_deposited)
@@ -43,9 +59,9 @@ class Banks(models.Model):
 
     class Meta:
         verbose_name_plural = "Banks"
-    
+
     def get_absolute_url(self):
-        return reverse('sheets:banks')
+        return reverse("sheets:banks")
 
 
 class Category(models.Model):
@@ -59,7 +75,7 @@ class Category(models.Model):
         return reverse(
             "sheets:categories",
         )
-    
+
     class Meta:
         verbose_name_plural = "Categories"
 
@@ -86,11 +102,13 @@ class Expense(models.Model):
         ),
     )
     image = models.ImageField(upload_to="expenses", blank=True, null=True)
-    bank = models.ForeignKey(Banks, related_name="expenses", on_delete=models.PROTECT)
+    bank = models.ForeignKey(
+        Banks, related_name="expenses", on_delete=models.PROTECT
+    )
 
     def __str__(self):
         return self.description
-    
+
     def save(self, *args, **kwargs):
         bank_model = self.bank
         bank_model.amount_deposited -= self.amount
@@ -102,4 +120,3 @@ class Expense(models.Model):
             "sheets:sheet",
             kwargs={"year": self.date.year, "month": self.date.month},
         )
-

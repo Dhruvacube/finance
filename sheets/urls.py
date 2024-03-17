@@ -43,10 +43,7 @@ urlpatterns = [
     ),
     #  Banks
     path("banks/", views.BanksListView.as_view(), name="banks"),
-    path(
-        "banks/new/", views.BanksCreateView.as_view(), name="banks-new"
-    ),
-    
+    path("banks/new/", views.BanksCreateView.as_view(), name="banks-new"),
     path(
         "banks/<int:pk>/",
         views.BanksUpdateView.as_view(),
@@ -57,4 +54,4 @@ urlpatterns = [
         views.BanksDeleteView.as_view(),
         name="banks-delete",
     ),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
