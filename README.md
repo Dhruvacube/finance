@@ -1,3 +1,7 @@
+__IHateToBudget is now archived. See [#26](https://github.com/bminusl/ihatetobudget/issues/26).__
+
+---
+
 <p align="center">
   <a href="https://github.com/student-finance/finance/">
     <img src="https://raw.githubusercontent.com/student-finance/finance/master/static/logo.png" alt="finance logo" height="75">
