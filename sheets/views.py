@@ -14,9 +14,11 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.dates import MonthArchiveView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from finance.utils.views import (InitialDataAsGETOptionsMixin,
-                                 SortableListViewMixin,
-                                 SuccessMessageOnDeleteViewMixin)
+from finance.utils.views import (
+    InitialDataAsGETOptionsMixin,
+    SortableListViewMixin,
+    SuccessMessageOnDeleteViewMixin,
+)
 
 from .forms import CategoryForm, ExpenseForm, BanksForm
 from .models import Category, Expense, Banks
@@ -79,8 +81,8 @@ def index(request):
             currency_decimal_separator=settings.CURRENCY_DECIMAL_SEPARATOR,
             currency_prefix=settings.CURRENCY_PREFIX,
             currency_suffix=settings.CURRENCY_SUFFIX,
-            #bank
-            banks=Banks.objects.all()
+            # bank
+            banks=Banks.objects.all(),
         ),
     )
 
@@ -231,6 +233,7 @@ class BanksListView(ListView):
     template_name = "sheets/banks.html"
     model = Banks
     extra_context = {"title": "Banks"}
+
 
 class BanksCreateView(
     LoginRequiredMixin,

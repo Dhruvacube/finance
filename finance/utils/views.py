@@ -76,13 +76,27 @@ class SortableListViewMixin:
             )
         return context
 
+
 colors_list = [settings.THEME_DICT[i] for i in settings.THEME_DICT]
+
 
 @sync_to_async
 @cache_page(60 * 15)
 @require_GET
 def changetheme(request):
-    l = (request.META.get("HTTP_REFERER") if request.META.get("HTTP_REFERER") else reverse("sheets:index"))
-    request.session['theme'] = request.GET.get("theme") if request.GET.get("theme") in settings.THEME_DICT else None
-    request.session['themecolor'] = request.GET.get("themecolor") if request.GET.get("themecolor") in colors_list else None
+    l = (
+        request.META.get("HTTP_REFERER")
+        if request.META.get("HTTP_REFERER")
+        else reverse("sheets:index")
+    )
+    request.session["theme"] = (
+        request.GET.get("theme")
+        if request.GET.get("theme") in settings.THEME_DICT
+        else None
+    )
+    request.session["themecolor"] = (
+        request.GET.get("themecolor")
+        if request.GET.get("themecolor") in colors_list
+        else None
+    )
     return redirect(l)

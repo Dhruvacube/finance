@@ -6,9 +6,13 @@ from django.views.generic import RedirectView
 from .utils.views import changetheme
 
 urlpatterns = [
-    path("", RedirectView.as_view(pattern_name="sheets:index", permanent=True), name="index"),
+    path(
+        "",
+        RedirectView.as_view(pattern_name="sheets:index", permanent=True),
+        name="index",
+    ),
     path("sheets/", include("sheets.urls")),
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
-    path("changetheme/", changetheme, name="changetheme")
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path("changetheme/", changetheme, name="changetheme"),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

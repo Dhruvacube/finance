@@ -7,6 +7,7 @@ from sentry_sdk.integrations.django import DjangoIntegration
 import sentry_sdk
 import dj_database_url
 
+
 class _MissingSentinel:
     __slots__ = ()
 
@@ -66,6 +67,7 @@ def token_get(tokenname: str = MISSING, all: bool = False) -> Any:
         return config._sections
     raise RuntimeError("Could not find .ini file")
 
+
 class _envConfig:
     """A class which contains all token configuration"""
 
@@ -79,7 +81,7 @@ class _envConfig:
 
 envConfig: Any = _envConfig()
 
-if bool(getattr(envConfig, 'SENTRY_URL', 0)):
+if bool(getattr(envConfig, "SENTRY_URL", 0)):
     sentry_sdk.init(
         dsn=envConfig.SENTRY_URL,
         integrations=[DjangoIntegration()],
@@ -167,7 +169,7 @@ WSGI_APPLICATION = "finance.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-if not bool(int(getattr(envConfig, 'COCKROACH_DB', 0))):
+if not bool(int(getattr(envConfig, "COCKROACH_DB", 0))):
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -175,7 +177,11 @@ if not bool(int(getattr(envConfig, 'COCKROACH_DB', 0))):
         }
     }
 else:
-    DATABASES = {'default': dj_database_url.config(default=envConfig.DATABASE_URL, engine='django_cockroachdb')}
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=envConfig.DATABASE_URL, engine="django_cockroachdb"
+        )
+    }
 
 
 # Auth
@@ -226,7 +232,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-STATIC_ROOT = BASE_DIR/ "staticfiles"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -237,73 +243,83 @@ STATICFILES_FINDERS = [
 # Currency formatting
 
 CURRENCY_GROUP_SEPARATOR = getattr(envConfig, "CURRENCY_GROUP_SEPARATOR", " ")
-CURRENCY_DECIMAL_SEPARATOR = getattr(envConfig, "CURRENCY_DECIMAL_SEPARATOR", ",")
+CURRENCY_DECIMAL_SEPARATOR = getattr(
+    envConfig, "CURRENCY_DECIMAL_SEPARATOR", ","
+)
 CURRENCY_PREFIX = getattr(envConfig, "CURRENCY_PREFIX", "₹")
 CURRENCY_SUFFIX = getattr(envConfig, "CURRENCY_SUFFIX", "")
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
-DEBUG = bool(int(getattr(envConfig, 'DEBUG', 0))) 
-    
-if bool(int(getattr(envConfig, 'WHITENOISE', 0))):
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-    MIDDLEWARE = ([MIDDLEWARE[0]] +
-                  ["whitenoise.middleware.WhiteNoiseMiddleware"] +
-                  MIDDLEWARE[1:])
-    INSTALLED_APPS = (INSTALLED_APPS[0:-1] + [
-        "whitenoise.runserver_nostatic",
-    ] + [INSTALLED_APPS[-1]])
+DEBUG = bool(int(getattr(envConfig, "DEBUG", 0)))
+
+if bool(int(getattr(envConfig, "WHITENOISE", 0))):
+    STATICFILES_STORAGE = (
+        "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    )
+    MIDDLEWARE = (
+        [MIDDLEWARE[0]]
+        + ["whitenoise.middleware.WhiteNoiseMiddleware"]
+        + MIDDLEWARE[1:]
+    )
+    INSTALLED_APPS = (
+        INSTALLED_APPS[0:-1]
+        + [
+            "whitenoise.runserver_nostatic",
+        ]
+        + [INSTALLED_APPS[-1]]
+    )
     WHITENOISE_MAX_AGE = 9000
     WHITENOISE_SKIP_COMPRESS_EXTENSIONS = []
 
 
-
-if bool(int(getattr(envConfig, 'PRODUCTION_SERVER', 0))):
+if bool(int(getattr(envConfig, "PRODUCTION_SERVER", 0))):
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
     SECURE_SSL_REDIRECT = True
-    SECURE_HSTS_SECONDS = 31536000 
+    SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_REFERRER_POLICY = "same-origin"
 else:
     CACHE_MIDDLEWARE_SECONDS = 0
 
-MEDIA_ROOT = BASE_DIR/ "media"
+MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
 
 THEME_DICT = {
-    'yeti': '008CBA',
-    'cerulean': '2FA4E7',
-    'darkly': '375A7F',
-    'litera': 'FFF',
-    'materia': '299AF3',
-    'pulse': '593196',
-    'simplex': 'FFFFFF',
-    'solar': '073642',
-    'united': 'E95420',
-    'zephyr': '3459E6',
-    'cosmo': '2780E3',
-    'flatly': '2C3E50',
-    'lumen': 'F6F6F6',
-    'minty': '78C2AD',
-    'quartz': 'E83283',
-    'sketchy': 'FFFFFF',
-    'spacelab': 'EEEEEE',
-    'vapor': '6F42C1',
-    'cyborg':'060606',
-    'journal': 'FFFFFF',
-    'lux': 'FFFFFF',
-    'morph': '378DFC',
-    'sandstone': '325D88',
-    'slate': '3A3F44',
-    'superhero': '20374C'
+    "yeti": "008CBA",
+    "cerulean": "2FA4E7",
+    "darkly": "375A7F",
+    "litera": "FFF",
+    "materia": "299AF3",
+    "pulse": "593196",
+    "simplex": "FFFFFF",
+    "solar": "073642",
+    "united": "E95420",
+    "zephyr": "3459E6",
+    "cosmo": "2780E3",
+    "flatly": "2C3E50",
+    "lumen": "F6F6F6",
+    "minty": "78C2AD",
+    "quartz": "E83283",
+    "sketchy": "FFFFFF",
+    "spacelab": "EEEEEE",
+    "vapor": "6F42C1",
+    "cyborg": "060606",
+    "journal": "FFFFFF",
+    "lux": "FFFFFF",
+    "morph": "378DFC",
+    "sandstone": "325D88",
+    "slate": "3A3F44",
+    "superhero": "20374C",
 }
 
 DJANGO_ALLOW_ASYNC_UNSAFE = True
 
-if bool(int(getattr(envConfig, 'LOGGING', 0))):
+if bool(int(getattr(envConfig, "LOGGING", 0))):
     import sys
+
     if sys.platform == "win32" and sys.version_info >= (3, 8, 0):
         from .django_logging import LOGGING
         import logging.config
@@ -321,9 +337,9 @@ CELERY_RESULT_SERIALIZER = "json"
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION":
-        os.environ.get("REDIS_URL", "redis://127.0.0.1:6379"
-                       ),  # expected port, otherwise you can alter it
+        "LOCATION": os.environ.get(
+            "REDIS_URL", "redis://127.0.0.1:6379"
+        ),  # expected port, otherwise you can alter it
     }
 }
 

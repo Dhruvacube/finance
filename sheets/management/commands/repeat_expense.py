@@ -28,7 +28,7 @@ class Command(BaseCommand):
             expense.pk = None
             expense.date = expense.date + relativedelta.relativedelta(months=1)
             expense.save()
-        
+
         for bank in Banks.objects.filter(
             recurring_next_month=True,
             updated_at__year=last_day_of_previous_month.year,
@@ -36,6 +36,5 @@ class Command(BaseCommand):
         ):
             bank.amount_deposited += bank.recurring_credit
             bank.save()
-            
-        print('Done cloning expenses and recurring money of the bank')
-        
+
+        print("Done cloning expenses and recurring money of the bank")
