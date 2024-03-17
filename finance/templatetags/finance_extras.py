@@ -23,11 +23,7 @@ def attrsum(container, attr_name):
 
 @register.filter
 def currency(amount):
-    return (
-        settings.CURRENCY_PREFIX
-        + str(amount)
-        + settings.CURRENCY_SUFFIX
-    )
+    return settings.CURRENCY_PREFIX + str(amount) + settings.CURRENCY_SUFFIX
 
 
 @register.simple_tag
@@ -74,16 +70,18 @@ def highlight_text(text, term):
         else text
     )
 
+
 @register.simple_tag
 def theme_range():
     a = f'<a class="dropdown-item" href="{reverse("changetheme")}?theme=default">Default</a><div class="dropdown-divider"></div>'
     for i in settings.THEME_DICT:
-        a+=f'<a class="dropdown-item" href="{reverse("changetheme")}?theme={i}"><i class="bi bi-circle-fill" style="color: #{settings.THEME_DICT[i]}"></i> {i.title()}</a>'
+        a += f'<a class="dropdown-item" href="{reverse("changetheme")}?theme={i}"><i class="bi bi-circle-fill" style="color: #{settings.THEME_DICT[i]}"></i> {i.title()}</a>'
     return mark_safe(a)
+
 
 @register.filter
 def display_color(amount_deposited, amount_threshold):
-    account_percentage = abs(amount_threshold /amount_deposited)
+    account_percentage = abs(amount_threshold / amount_deposited)
     if account_percentage < 0.75 and account_percentage > 0.5:
         return "#08cf3d"
     if account_percentage < 0.5 and account_percentage > 0.25:
