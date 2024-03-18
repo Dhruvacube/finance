@@ -232,11 +232,11 @@
         },
         "django-colorfield": {
             "hashes": [
-                "sha256:29dffa09b2ce89f19504a53a120e5bfdbfe3e44621f33b3f94b0e6a572ae93c1",
-                "sha256:9c2c36a7cac60bf6e57e70ca344529a3065226543358d01036e1714371f3166d"
+                "sha256:05c38c8eb2a94938b810a19b2011846391a4ce71d1c92e88a35974fbcc8fc62e",
+                "sha256:460f40e6123b6ae0fb51a4eb86fc258fcdc0ea28f75102b685e8209b1eae9ec3"
             ],
             "index": "pypi",
-            "version": "==0.7.2"
+            "version": "==0.11.0"
         },
         "django-compressor": {
             "hashes": [
