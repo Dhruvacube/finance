@@ -17,7 +17,7 @@ whitenoise = "*"
 pillow = "*"
 setuptools = "*"
 django-bootstrap-v5 = "*"
-django-cockroachdb = "==4.1.*"
+django-cockroachdb = "==5.0"
 dj-database-url = "*"
 psycopg2 = "*"
 gunicorn = {version = "*", sys_platform = "!= 'win32'"}

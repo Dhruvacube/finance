@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b21f96ae8cae0c0022651a904e69671932b5a6f1f3a56ceb0330281d2eb83b42"
+            "sha256": "f0f3399e7d7b6bfc0a234146061187343461ab50941c57fab3a10a89a0d1763f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -224,11 +224,12 @@
         },
         "django-cockroachdb": {
             "hashes": [
-                "sha256:0f3a33828455b3759a4bd2852714266a4985de239ce558a233c8bf41414148bb",
-                "sha256:4497a5cb16de355ef05163ff4c49daa1c09a1400e3cc61b9a27fb81aea051234"
+                "sha256:60f93aea894ef2fad9bc8623004263533f31f71b3abf108ef94e2bd55ca0db25",
+                "sha256:9d43f9ee4daf050b5e9b25cf200693187c446d8c3c8785db10bff41ef1b4bf3e"
             ],
             "index": "pypi",
-            "version": "==4.1"
+            "markers": "python_version >= '3.8'",
+            "version": "==5.0"
         },
         "django-colorfield": {
             "hashes": [
